@@ -1,0 +1,67 @@
+.site-wrapper {
+    display: grid;
+
+    grid-template-areas: 'header nav profile' 'friends feed messages';
+
+    grid-template-rows: 60px 11fr;
+    grid-template-columns: 2.5fr 5fr 2.5fr;
+}
+
+.free-header {
+    grid-area: header;
+    background-color: aquamarine;
+    margin: 5px;
+}
+
+.free-nav {
+    grid-area: nav;
+    text-align: center;
+    background-color: aquamarine;
+    margin: 5px;
+}
+
+.my-profile {
+    grid-area: profile;
+    text-align: center;
+    background-color: aquamarine;
+    margin: 5px;
+}
+
+.my-friends {
+    grid-area: friends;
+    text-align: center;
+    background-color: #8bff79;
+    margin: 5px;
+    height: 600px;
+}
+
+.my-feed {
+    grid-area: feed;
+    text-align: center;
+    background-color: #8bff79;
+    margin: 5px;
+    height: 600px;
+}
+
+.my-messages {
+    grid-area: messages;
+    text-align: center;
+    background-color: #8bff79;
+    margin: 5px;
+    height: 600px;
+}
+
+
+.free-header img {
+    width: 30px;
+    margin: 5px;
+}
+.free-header p {
+    display: inline;
+    font-size: 10px;
+    margin: 20px;
+}
+
+.free-nav a {
+    margin: 10%;
+}
