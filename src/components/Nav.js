@@ -1,8 +1,9 @@
 import React from "react";
+import classes from '../cssModules/Nav.module.css'
 
 const Nav = () => {
     return (
-        <nav className={'free-nav'}>
+        <nav className={classes.freeNav}>
             <a>Home</a>
             <a>Groups</a>
             <a>Country</a>

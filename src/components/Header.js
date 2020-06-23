@@ -1,9 +1,10 @@
 import React from "react";
+import  classes from '../cssModules/Header.module.css'
 
 const Header = () => {
     return (
-        <header className={'free-header'}>
-            <img src='https://cdn.pixabay.com/photo/2017/09/07/08/06/bird-2724144_960_720.png' alt={'logo'} />
+        <header className={classes.freeHeader}>
+            <img src={require('../drawable/freedom-logo.png')} alt={'logo'} />
             <p>Дорога измеряется не в милях, а в друзьях</p>
         </header>
     );

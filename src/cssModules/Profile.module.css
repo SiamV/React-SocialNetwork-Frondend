@@ -1,0 +1,6 @@
+.myProfile {
+    grid-area: profile;
+    text-align: center;
+    background-color: aquamarine;
+    margin: 5px;
+}

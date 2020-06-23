@@ -1,0 +1,15 @@
+.freeNav {
+    grid-area: nav;
+    text-align: center;
+    background-color: aquamarine;
+    margin: 5px;
+}
+
+.freeNav a {
+    margin: 10%;
+    color: blue;
+}
+
+.freeNav a:hover {
+    color: dodgerblue;
+}

@@ -1,0 +1,12 @@
+.myFriends {
+    grid-area: friends;
+    background-color: #8bff79;
+    margin: 5px;
+    height: 600px;
+}
+.myFriends li{
+    margin: 10px;
+}
+.myFriends li:hover {
+    color: blue;
+}

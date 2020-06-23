@@ -1,0 +1,15 @@
+.myFeed {
+    grid-area: feed;
+    background-color: #8bff79;
+    margin: 5px;
+    height: 600px;
+}
+
+.myFeed img {
+    width: 150px;
+    margin: 10px;
+}
+
+.myFeed p {
+    margin: 10px;
+}

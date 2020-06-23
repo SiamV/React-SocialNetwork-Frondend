@@ -1,8 +1,9 @@
 import React from "react";
+import classes from '../cssModules/Messages.module.css'
 
 const  Messages = () => {
     return (
-        <div className={'my-messages'}>
+        <div className={classes.myMessages}>
             Messages
         </div>
     );
