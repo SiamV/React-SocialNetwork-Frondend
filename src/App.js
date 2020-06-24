@@ -6,6 +6,7 @@ import Profile from "./components/Profile/Profile";
 import Friends from "./components/Friends/Friends";
 import Feed from "./components/Feed/Feed";
 import Messages from "./components/Messages/Messages";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 
 const App = () => {
@@ -14,9 +15,16 @@ const App = () => {
             <Header />
             <Nav />
             <Profile />
-            <Friends />
-            <Feed />
-            <Messages />
+            <div className={'site-wrapper-friends'}>
+                <Friends />
+            </div>
+            <div className={'site-wrapper-feed'}>
+                <Feed />
+                {/*<Messages />*/}
+            </div>
+            <div className={'site-wrapper-sidebar'}>
+                <Sidebar />
+            </div>
         </div>
     );
 }

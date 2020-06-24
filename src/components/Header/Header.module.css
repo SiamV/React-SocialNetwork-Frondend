@@ -7,9 +7,8 @@
 .freeHeader img {
     width: 30px;
     margin: 5px;
+    float: left;
 }
 .freeHeader p {
-    display: inline;
-    font-size: 10px;
-    margin: 20px;
+    font-size: 12px;
 }

@@ -4,6 +4,7 @@ import classes from './Friends.module.css'
 const  Friends = () => {
     return (
         <div className={classes.myFriends}>
+            <span>Friends:</span>
             <ul>
                 <li>Fedor</li>
                 <li>Nastya</li>

@@ -1,12 +1,9 @@
-.myFriends {
-    grid-area: friends;
-    background-color: #8bff79;
-    margin: 5px;
-    height: auto;
-}
 .myFriends li{
     margin: 10px;
 }
 .myFriends li:hover {
     color: blue;
+}
+.myFriends span {
+    margin: 10px;
 }

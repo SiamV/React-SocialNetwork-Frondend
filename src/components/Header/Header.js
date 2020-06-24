@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <header className={classes.freeHeader}>
             <img src={require('../../drawable/freedom-logo.png')} alt={'logo'} />
-            <p>Дорога измеряется не в милях, а в друзьях</p>
+            <p>Дорога измеряется не в милях, <br/> а в друзьях</p>
         </header>
     );
 }

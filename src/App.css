@@ -1,8 +1,30 @@
 .site-wrapper {
     display: grid;
 
-    grid-template-areas: 'header nav profile' 'friends feed messages';
+    grid-template-areas: 'header nav profile ' 'friends feed sidebar ';
 
     grid-template-rows: 60px 11fr;
-    grid-template-columns: 2.5fr 5fr 2.5fr;
+    grid-template-columns: 2.5fr 7fr 2.5fr;
+}
+
+.site-wrapper .site-wrapper-feed {
+    grid-area: feed;
+    background-color: #8bff79;
+    margin: 5px;
+    height: auto;
+}
+
+.site-wrapper .site-wrapper-friends{
+    grid-area: friends;
+    background-color: #8bff79;
+    margin: 5px;
+    height: auto;
+}
+
+.site-wrapper .site-wrapper-sidebar {
+    grid-area: sidebar;
+    text-align: center;
+    background-color: #8bff79;
+    margin: 5px;
+    height: auto;
 }

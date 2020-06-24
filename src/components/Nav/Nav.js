@@ -4,9 +4,9 @@ import classes from './Nav.module.css'
 const Nav = () => {
     return (
         <nav className={classes.freeNav}>
-            <a>Home</a>
-            <a>Groups</a>
-            <a>Country</a>
+            <a>NewsFriends</a>
+            <a>NewsGroups</a>
+            <a>Messages</a>
         </nav>
     );
 }
