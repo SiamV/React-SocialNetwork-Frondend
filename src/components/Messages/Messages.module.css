@@ -1,3 +1,27 @@
-.myMessages {
+.dialog {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.userItems {
+    padding: 10px;
+}
 
+.userItems .user {
+    margin-top: 20px;
+}
+
+.userItems .active {
+    color: crimson;
+}
+
+.messages {
+    padding: 10px;
+}
+
+.messages .message {
+    margin: 10px;
+    border: dodgerblue 2px solid;
+    border-radius: 30px;
+    max-width: max-content;
+    padding: 5px;
 }

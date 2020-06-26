@@ -1,3 +1,13 @@
 .myProfile {
 
 }
+
+.myProfile a {
+    text-decoration: none;
+    color: blue;
+    vertical-align: middle;
+}
+
+.myProfile a:hover {
+    color: dodgerblue;
+}

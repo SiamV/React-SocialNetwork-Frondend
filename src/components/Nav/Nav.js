@@ -1,12 +1,13 @@
 import React from "react";
 import classes from './Nav.module.css'
+import {NavLink} from "react-router-dom";
 
 const Nav = () => {
     return (
         <nav className={classes.freeNav}>
-            <a href={'/news'}>NewsFriends</a>
-            <a href={'/groups'}>NewsGroups</a>
-            <a href={'/messages'}>Messages</a>
+            <NavLink to={'/news'}>NewsFriends</NavLink>
+            <NavLink to={'/groups'}>NewsGroups</NavLink>
+            <NavLink to={'/messages'}>Messages</NavLink>
         </nav>
     );
 }

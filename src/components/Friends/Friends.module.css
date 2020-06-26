@@ -7,3 +7,14 @@
 .myFriends span {
     margin: 10px;
 }
+
+.myFriends .NavLink {
+    display: block;
+    text-decoration: none;
+    color: blue;
+    padding-top: 10px;
+}
+
+.myFriends .NavLink:hover {
+    color: dodgerblue;
+}
