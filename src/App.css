@@ -1,21 +1,41 @@
 .site-wrapper {
     display: grid;
 
-    grid-template-areas: 'header nav profile ' 'friends feed sidebar ';
+    grid-template-areas: 'header nav account ' 'friends feed sidebar ';
 
-    grid-template-rows: 60px 11fr;
+    grid-template-rows: 70px 11fr;
     grid-template-columns: 2.5fr 7fr 2.5fr;
 }
 
-.site-wrapper .site-wrapper-feed {
-    grid-area: feed;
+.site-wrapper .site-wrapper-header {
+    grid-area: header;
+    background-color: aquamarine;
+    margin: 5px;
+}
+
+.site-wrapper .site-wrapper-nav {
+    grid-area: nav;
+    text-align: center;
+    background-color: aquamarine;
+    margin: 5px;
+}
+
+.site-wrapper .site-wrapper-account {
+    grid-area: account;
+    text-align: center;
+    background-color: aquamarine;
+    margin: 5px;
+}
+
+.site-wrapper .site-wrapper-friends{
+    grid-area: friends;
     background-color: #8bff79;
     margin: 5px;
     height: auto;
 }
 
-.site-wrapper .site-wrapper-friends{
-    grid-area: friends;
+.site-wrapper .site-wrapper-feed {
+    grid-area: feed;
     background-color: #8bff79;
     margin: 5px;
     height: auto;

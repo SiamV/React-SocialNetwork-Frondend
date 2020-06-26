@@ -1,11 +1,5 @@
-.freeHeader {
-    grid-area: header;
-    background-color: aquamarine;
-    margin: 5px;
-}
-
 .freeHeader img {
-    width: 30px;
+    height: 40px;
     margin: 5px;
     float: left;
 }

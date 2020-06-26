@@ -1,8 +1,8 @@
 import React from "react";
-import  classes from './Feed.module.css'
+import  classes from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 
-const  Feed = () => {
+const  Profile = () => {
     return (
         <div className={classes.myFeed}>
             <img src={require('../../drawable/aveoAzul.jpg')} alt={'avatar'}/>
@@ -12,4 +12,4 @@ const  Feed = () => {
     );
 }
 
-export default Feed;
+export default Profile;
