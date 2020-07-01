@@ -6,12 +6,16 @@
     padding: 10px;
 }
 
-.userItems .user {
+.user {
     margin-top: 20px;
 }
 
-.userItems .active {
-    color: crimson;
+.user .link {
+    text-decoration: none;
+    color: darkblue;
+}
+.user .link:hover {
+    color: blue;
 }
 
 .messages {
