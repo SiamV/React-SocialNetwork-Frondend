@@ -12,16 +12,15 @@ const  Friends = () => {
         {id: 6, name: "Anna", link: "/anna"}
     ]
 
+    let friendsElements = myFriendsData.map(f => (
+        <NavLink to={f.link} className={classes.NavLink}>{f.name}</NavLink>
+    ))
+
     return (
         <div className={classes.myFriends}>
             <span>Friends:</span>
             <ul>
-                <NavLink to={myFriendsData[0].link} className={classes.NavLink}>{myFriendsData[0].name}</NavLink>
-                <NavLink to={myFriendsData[1].link} className={classes.NavLink}>{myFriendsData[1].name}</NavLink>
-                <NavLink to={myFriendsData[2].link} className={classes.NavLink}>{myFriendsData[2].name}</NavLink>
-                <NavLink to={myFriendsData[3].link} className={classes.NavLink}>{myFriendsData[3].name}</NavLink>
-                <NavLink to={myFriendsData[4].link} className={classes.NavLink}>{myFriendsData[4].name}</NavLink>
-                <NavLink to={myFriendsData[5].link} className={classes.NavLink}>{myFriendsData[5].name}</NavLink>
+                {friendsElements}
             </ul>
         </div>
     );

@@ -19,6 +19,10 @@ const MyPosts = () => {
                 ' компоненты в React-приложениях.', like: 120}
     ]
 
+    let postsElements = myPostsData.map(p => (
+        <Post description={p.post} like={p.like} />
+    ))
+
     return (
         <div className={classes.MyPosts}>
             <h3>New my post:</h3>
@@ -28,9 +32,7 @@ const MyPosts = () => {
                 <button>Delete</button>
             </div>
             <div className={classes.divPosts}>
-            <Post description={myPostsData[0].post} like={myPostsData[0].like} />
-            <Post description={myPostsData[1].post} like={myPostsData[1].like} />
-            <Post description={myPostsData[2].post} like={myPostsData[2].like} />
+                {postsElements}
             </div>
         </div>
     )
