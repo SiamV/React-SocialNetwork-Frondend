@@ -12,17 +12,17 @@ import Newsfriends from "./components/Newsfriends/Newsfriends";
 import NewsGroups from "./components/NewsGroups/NewsGroups";
 
 
-const App = () => {
+const App = (props) => {
     return (
         <BrowserRouter>
             <div className={'site-wrapper'}>
                 <div className={'site-wrapper-header'}><Header /></div>
                 <div className={'site-wrapper-nav'}><Nav /></div>
                 <div className={'site-wrapper-account'}><Account /></div>
-                <div className={'site-wrapper-friends'}><Friends /></div>
+                <div className={'site-wrapper-friends'}><Friends myFriendsData={props.myFriendsData}/></div>
                 <div className={'site-wrapper-feed'}>
-                    <Route path={'/profile'} component={Profile} />
-                    <Route path={'/messages'} component={Messages} />
+                    <Route path={'/profile'} render={() => <Profile myPostsData={props.myPostsData}/>} />
+                    <Route path={'/messages'} render={() => <Messages userItemData={props.userItemData} messagesData={props.messagesData}/>} />
                     <Route path={'/news'} component={Newsfriends} />
                     <Route path={'/groups'} component={NewsGroups} />
                 </div>
