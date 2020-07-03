@@ -1,5 +1,5 @@
-import classes from "../Messages.module.css";
 import React from "react";
+import classes from "./MessagesItem.module.css"
 
 const MessagesItem = (props) => {
     return (

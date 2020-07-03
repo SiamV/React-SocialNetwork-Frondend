@@ -8,7 +8,7 @@ import Profile from "./components/Feed/Profile";
 import Messages from "./components/Messages/Messages";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route} from "react-router-dom";
-import Newsfriends from "./components/Newsfriends/Newsfriends";
+import NewsFriends from "./components/Newsfriends/NewsFriends";
 import NewsGroups from "./components/NewsGroups/NewsGroups";
 
 
@@ -23,7 +23,7 @@ const App = (props) => {
                 <div className={'site-wrapper-feed'}>
                     <Route path={'/profile'} render={() => <Profile myPostsData={props.myState.profilePage.myPostsData}/>} />
                     <Route path={'/messages'} render={() => <Messages userItemData={props.myState.messagesPage.userItemData} messagesData={props.myState.messagesPage.messagesData}/>} />
-                    <Route path={'/news'} component={Newsfriends} />
+                    <Route path={'/news'} component={NewsFriends} />
                     <Route path={'/groups'} component={NewsGroups} />
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>

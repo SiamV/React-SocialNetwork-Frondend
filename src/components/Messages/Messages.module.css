@@ -21,11 +21,3 @@
 .messages {
     padding: 10px;
 }
-
-.messages .message {
-    margin: 10px;
-    border: dodgerblue 2px solid;
-    border-radius: 30px;
-    max-width: max-content;
-    padding: 5px;
-}

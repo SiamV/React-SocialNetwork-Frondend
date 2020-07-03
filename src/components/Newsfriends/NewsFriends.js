@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './Newsfriends.module.css'
 
-const Newsfriends = () => {
+const NewsFriends = () => {
     return(
         <div className={classes.newsFriends}>
             <span>News Friends</span>
@@ -9,4 +9,4 @@ const Newsfriends = () => {
     )
 }
 
-export default Newsfriends;
+export default NewsFriends;
