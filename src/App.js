@@ -19,10 +19,10 @@ const App = (props) => {
                 <div className={'site-wrapper-header'}><Header /></div>
                 <div className={'site-wrapper-nav'}><Nav /></div>
                 <div className={'site-wrapper-account'}><Account /></div>
-                <div className={'site-wrapper-friends'}><Friends myFriendsData={props.myFriendsData}/></div>
+                <div className={'site-wrapper-friends'}><Friends myFriendsData={props.myState.friendsPage.myFriendsData}/></div>
                 <div className={'site-wrapper-feed'}>
-                    <Route path={'/profile'} render={() => <Profile myPostsData={props.myPostsData}/>} />
-                    <Route path={'/messages'} render={() => <Messages userItemData={props.userItemData} messagesData={props.messagesData}/>} />
+                    <Route path={'/profile'} render={() => <Profile myPostsData={props.myState.profilePage.myPostsData}/>} />
+                    <Route path={'/messages'} render={() => <Messages userItemData={props.myState.messagesPage.userItemData} messagesData={props.myState.messagesPage.messagesData}/>} />
                     <Route path={'/news'} component={Newsfriends} />
                     <Route path={'/groups'} component={NewsGroups} />
                 </div>
