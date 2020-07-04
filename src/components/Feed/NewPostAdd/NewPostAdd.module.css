@@ -1,0 +1,35 @@
+.newPost {
+    padding: 10px;
+}
+
+.newPost textarea {
+    width: 100%; /* Ширина поля */
+    padding: 10px;
+    box-sizing: border-box; /* Алгоритм расчёта ширины */
+    box-shadow: inset 0 1px 5px rgba(0,0,0,0.2); /* Тень внутри */
+    border: 1px solid #ccc;
+    color: #151111;
+    font-size: 16px;
+}
+
+.newPost button {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: 7px;
+    margin-right: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    background: rgb(64, 199, 129);
+    box-shadow: 0 -3px rgb(53, 167, 110) inset;
+    transition: 0.2s;
+}
+
+.newPost button:hover {
+    background: rgb(53, 167, 110);
+}
+
+.newPost button:active {
+    background: rgb(33, 147, 90);
+    box-shadow: 0 3px rgb(33, 147, 90) inset;
+}

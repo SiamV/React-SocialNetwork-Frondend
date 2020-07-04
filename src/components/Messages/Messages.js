@@ -42,16 +42,15 @@ const Messages = (props) => {
     return (
         <div className={classes.dialog}>
             <div className={classes.userItems}>
-                {/*выводим вместо одной компоненты массив из наших компонент с пользователями в виде переменной
-                 userElements в
-                 скобках JS скрипта*/}
                 {userElements}
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-                <textarea ref={newMessageElement}>new Message</textarea>
                 <div>
-                    <button onClick={addMessage}>Add Message</button>
+                    <textarea ref={newMessageElement} cols="30" rows="5" placeholder={'new message...'}></textarea>
+                    <div>
+                        <button onClick={addMessage}>Send message</button>
+                    </div>
                 </div>
             </div>
         </div>

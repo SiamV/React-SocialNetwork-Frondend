@@ -1,0 +1,11 @@
+.user {
+    margin-top: 20px;
+}
+
+.user .link {
+    text-decoration: none;
+    color: darkblue;
+}
+.user .link:hover {
+    color: blue;
+}

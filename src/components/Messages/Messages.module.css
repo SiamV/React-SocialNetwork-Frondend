@@ -1,23 +1,39 @@
 .dialog {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 2.5fr 7.5fr;
 }
+
 .userItems {
     padding: 10px;
 }
 
-.user {
-    margin-top: 20px;
-}
-
-.user .link {
-    text-decoration: none;
-    color: darkblue;
-}
-.user .link:hover {
-    color: blue;
-}
-
 .messages {
     padding: 10px;
+}
+
+.messages textarea {
+    position: relative;
+    max-width: 400px;
+    margin: 20px auto 5px;
+    background: white;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.messages button {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 10px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    transition: 0.2s;
+}
+
+.messages button:hover { background: rgb(53, 167, 110); }
+.messages button:active {
+    background: rgb(33,147,90);
+    box-shadow: 0 3px rgb(33,147,90) inset;
 }

@@ -6,7 +6,7 @@ const Post = (props) => {
         <div className={classes.post}>
             <img src={require('../../../../drawable/aveoAzul.jpg')} alt={'avatar'}/>
            <span>{props.description}</span>
-            <div>
+            <div className={classes.likeField}>
             <span>like: {props.like}</span>
             </div>
         </div>

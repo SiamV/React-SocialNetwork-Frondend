@@ -1,4 +1,4 @@
-import classes from "../Messages.module.css";
+import classes from "./UserItem.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
 

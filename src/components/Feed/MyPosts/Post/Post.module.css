@@ -8,3 +8,8 @@
     margin-top: 5px;
     float: left;
 }
+
+.post .likeField {
+    margin-top: 5px;
+    text-align: right;
+}
