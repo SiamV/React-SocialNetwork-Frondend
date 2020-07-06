@@ -1,11 +1,12 @@
 import React from "react";
 import classes from './NewPostAdd.module.css'
+import {addMyPost} from "../../../redux/state";
 
-const NewPostAdd = () => {
+const NewPostAdd = (props) => {
 
     let addPost = () => {
         let text = newPostElement.current.value;
-        alert(text);
+        props.addPost(text);
     }
 
     let newPostElement = React.createRef();

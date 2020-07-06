@@ -10,6 +10,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route} from "react-router-dom";
 import NewsFriends from "./components/Newsfriends/NewsFriends";
 import NewsGroups from "./components/NewsGroups/NewsGroups";
+import {addMyPost} from "./redux/state";
 
 
 const App = (props) => {
@@ -21,7 +22,11 @@ const App = (props) => {
                 <div className={'site-wrapper-account'}><Account /></div>
                 <div className={'site-wrapper-friends'}><Friends myFriendsData={props.myState.friendsPage.myFriendsData}/></div>
                 <div className={'site-wrapper-feed'}>
-                    <Route path={'/profile'} render={() => <Profile myPostsData={props.myState.profilePage.myPostsData}/>} />
+                    <Route path={'/profile'} render={() =>
+                        <Profile
+                            myPostsData={props.myState.profilePage.myPostsData}
+                            addPost={props.addPost}
+                        />} />
                     <Route path={'/messages'} render={() => <Messages userItemData={props.myState.messagesPage.userItemData} messagesData={props.myState.messagesPage.messagesData}/>} />
                     <Route path={'/news'} component={NewsFriends} />
                     <Route path={'/groups'} component={NewsGroups} />

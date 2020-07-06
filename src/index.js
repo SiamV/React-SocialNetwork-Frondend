@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import state from "./redux/state";
+import {addMyPost} from "./redux/state";
 
 // let myPostsData = [
 //     {id: 1, post: 'Назовем эту рубрику «Магия CSS». Думаю, это точно описывает то, о чем я буду' +
@@ -44,9 +45,11 @@ import state from "./redux/state";
 //     {id: 6, name: "Anna", link: "/anna"}
 // ]
 
+//addMyPost('hello, my new post ready')
+
 ReactDOM.render(
   <React.StrictMode>
-    <App myState={state} />
+    <App myState={state} addPost={addMyPost}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
