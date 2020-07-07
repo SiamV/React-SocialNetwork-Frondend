@@ -27,7 +27,12 @@ const App = (props) => {
                             myPostsData={props.myState.profilePage.myPostsData}
                             addPost={props.addPost}
                         />} />
-                    <Route path={'/messages'} render={() => <Messages userItemData={props.myState.messagesPage.userItemData} messagesData={props.myState.messagesPage.messagesData}/>} />
+                    <Route path={'/messages'} render={() =>
+                        <Messages
+                            userItemData={props.myState.messagesPage.userItemData}
+                            messagesData={props.myState.messagesPage.messagesData}
+                            addMessage={props.addMessage}
+                        />} />
                     <Route path={'/news'} component={NewsFriends} />
                     <Route path={'/groups'} component={NewsGroups} />
                 </div>
