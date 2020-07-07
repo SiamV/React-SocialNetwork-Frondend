@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {addMyPost} from "./redux/state";
+import {addMyPost, updateNewMessage, updateNewPost} from "./redux/state";
 import {addMyMessage} from "./redux/state";
 
 export let rerenderTree = (state) => {
 ReactDOM.render(
   <React.StrictMode>
-    <App myState={state} addPost={addMyPost} addMessage={addMyMessage}/>
+    <App
+        myState={state}
+        addPost={addMyPost}
+        updateNewPost={updateNewPost}
+        addMessage={addMyMessage}
+        updateNewMessage={updateNewMessage}
+    />
   </React.StrictMode>,
   document.getElementById('root')
 );

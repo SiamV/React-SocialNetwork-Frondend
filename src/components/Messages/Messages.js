@@ -20,6 +20,12 @@ const Messages = (props) => {
 
     let newMessageElement = React.createRef();
 
+    //FLUX система. Обработчик изменений в textarea
+    let onChangeMessage = () => {
+        let text = newMessageElement.current.value;
+        props.updateNewMessage(text);
+    }
+
     //сама компонента Messages
     return (
         <div className={classes.dialog}>
@@ -29,7 +35,8 @@ const Messages = (props) => {
             <div className={classes.messages}>
                 {messagesElements}
                 <div>
-                    <textarea ref={newMessageElement} cols="30" rows="5" placeholder={'new message...'}></textarea>
+                    <textarea value={props.updateMessage} onChange={onChangeMessage}
+                              ref={newMessageElement} cols="30" rows="5" placeholder={'new message...'} />
                     <div>
                         <button onClick={addMessage}>Send message</button>
                     </div>

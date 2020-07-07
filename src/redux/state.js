@@ -20,7 +20,8 @@ let state = {
                     ' позволяет нам использовать одну и ту же абстракцию — компоненты — на любом уровне нашего приложения.' +
                     ' Неважно, пишем ли мы кнопку, форму или целый экран: все они, как правило, представляют собой' +
                     ' компоненты в React-приложениях.', like: 120
-            }]
+            }],
+        newPostAdd: ''
     },
 
     messagesPage: {
@@ -36,7 +37,8 @@ let state = {
             {id: 2, message: "Hi, Andrey. How are you?"},
             {id: 3, message: "That fine. I work in Moscow"},
             {id: 4, message: "Ok. What is your profession?"}
-        ]
+        ],
+        updateMessage: ''
     },
 
     friendsPage: {
@@ -59,6 +61,7 @@ export let addMyPost = (postMessage) => {
         like: 0
     }
     state.profilePage.myPostsData.push(newPost);
+    state.profilePage.newPostAdd = '';
     rerenderTree(state);
 }
 
@@ -68,6 +71,17 @@ export let addMyMessage = (postMessage) => {
         message: postMessage
     }
     state.messagesPage.messagesData.push(newMessage);
+    state.messagesPage.updateMessage = '';
+    rerenderTree(state);
+}
+
+export let updateNewPost = (newSymbol) => {
+    state.profilePage.newPostAdd = newSymbol;
+    rerenderTree(state);
+}
+
+export let updateNewMessage = (newSymbol) => {
+    state.messagesPage.updateMessage = newSymbol;
     rerenderTree(state);
 }
 
