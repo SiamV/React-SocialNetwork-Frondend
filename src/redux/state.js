@@ -1,5 +1,4 @@
-import {rerenderTree} from "../render";
-
+let rerenderTree = () => {}
 
 let state = {
     profilePage: {
@@ -54,7 +53,7 @@ let state = {
 
 }
 
-export let addMyPost = (postMessage) => {
+export const addMyPost = (postMessage) => {
     let newPost = {
         id:4,
         post: postMessage,
@@ -65,7 +64,7 @@ export let addMyPost = (postMessage) => {
     rerenderTree(state);
 }
 
-export let addMyMessage = (postMessage) => {
+export const addMyMessage = (postMessage) => {
     let newMessage = {
         id: 5,
         message: postMessage
@@ -75,14 +74,19 @@ export let addMyMessage = (postMessage) => {
     rerenderTree(state);
 }
 
-export let updateNewPost = (newSymbol) => {
+export const updateNewPost = (newSymbol) => {
     state.profilePage.newPostAdd = newSymbol;
     rerenderTree(state);
 }
 
-export let updateNewMessage = (newSymbol) => {
+export const updateNewMessage = (newSymbol) => {
     state.messagesPage.updateMessage = newSymbol;
     rerenderTree(state);
+}
+
+//вызываем subscribe, в observer которого сидит rerenderTree
+export let subscribe = (observer) => {
+    rerenderTree = observer;
 }
 
 export default state;
