@@ -1,31 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import state, {subscribe} from "./redux/state";
+import store from "./redux/state";
 import App from './App';
-import {addMyPost, updateNewMessage, updateNewPost} from "./redux/state";
-import {addMyMessage} from "./redux/state";
 import * as serviceWorker from './serviceWorker';
 
 //rerenderTree функция, которая в нужный момент перерисовыет всё дерево
-let rerenderTree = (state) => {
+let rerenderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                myState={state}
-                addPost={addMyPost}
-                updateNewPost={updateNewPost}
-                addMessage={addMyMessage}
-                updateNewMessage={updateNewMessage}
+                myState={store.getState()}
+                addPost={store.addMyPost.bind(store)}
+                updateNewPost={store.updateNewPost.bind(store)}
+                addMessage={store.addMyMessage.bind(store)}
+                updateNewMessage={store.updateNewMessage.bind(store)}
             />
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
-rerenderTree(state); //запускаем первую отрисовку
+rerenderTree(); //запускаем первую отрисовку
 
 //передаем rerenderTree в subscribe
-subscribe (rerenderTree); //исключаем циклическую зависимость. используем callback
+store.subscribe (rerenderTree); //исключаем циклическую зависимость. используем callback
 
 
 // If you want your app to work offline and load faster, you can change
