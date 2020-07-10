@@ -15,7 +15,7 @@ const Messages = (props) => {
     //Нажимаем на кнопку
     let addMessage = () => {
         let text = newMessageElement.current.value;
-        props.addMessage(text);
+        props.dispatch({type:'ADD-MY-MESSAGE', postMessage: text});
     };
 
     let newMessageElement = React.createRef();
@@ -23,7 +23,7 @@ const Messages = (props) => {
     //FLUX система. Обработчик изменений в textarea
     let onChangeMessage = () => {
         let text = newMessageElement.current.value;
-        props.updateNewMessage(text);
+        props.dispatch({type:'UPDATE-NEW-MESSAGE', newSymbol: text});
     }
 
     //сама компонента Messages

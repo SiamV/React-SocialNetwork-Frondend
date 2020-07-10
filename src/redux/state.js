@@ -9,9 +9,11 @@ let store = {
                     ' в работе.', like: 150
             },
                 {
-                    id: 2, post: 'Эта функция — компонент, потому что она получает данные в одном объекте («пропсы») в' +
+                    id: 2,
+                    post: 'Эта функция — компонент, потому что она получает данные в одном объекте («пропсы») в' +
                         ' качестве параметра и возвращает React-элемент. Мы будем называть такие компоненты «функциональными»,' +
-                        ' так как они буквально являются функциями.', like: 200
+                        ' так как они буквально являются функциями.',
+                    like: 200
                 },
                 {
                     id: 3, post: 'Компоненты могут ссылаться на другие компоненты в возвращённом ими дереве. Это' +
@@ -50,41 +52,71 @@ let store = {
             ]
         }
     },
-    getState () {
-        return this._state;
-    },
-    addMyPost (postMessage) {
-        let newPost = {
-            id:4,
-            post: postMessage,
-            like: 0
-        }
-        this._state.profilePage.myPostsData.push(newPost);
-        this._state.profilePage.newPostAdd = '';
-        this._callSubscriber(this._state);
-    },
-    addMyMessage (postMessage) {
-        let newMessage = {
-            id: 5,
-            message: postMessage
-        }
-        this._state.messagesPage.messagesData.push(newMessage);
-        this._state.messagesPage.updateMessage = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewPost (newSymbol) {
-        this._state.profilePage.newPostAdd = newSymbol;
-        this._callSubscriber(this._state);
-    },
-    updateNewMessage (newSymbol) {
-        this._state.messagesPage.updateMessage = newSymbol;
-        this._callSubscriber(this._state);
+    _callSubscriber() {
     },
     //вызываем subscribe, в observer которого сидит rerenderTree
-    subscribe (observer) {
+    subscribe(observer) {
         this._callSubscriber = observer;
     },
-    _callSubscriber () {}
+    getState() {
+        return this._state;
+    },
+
+    dispatch(action) { //{type: 'ADD-MY-POST'}
+        if (action.type === 'ADD-MY-POST') {
+            let newPost = {
+                id: 4,
+                post: action.postMessage,
+                like: 0
+            }
+            this._state.profilePage.myPostsData.push(newPost);
+            this._state.profilePage.newPostAdd = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST') {
+            this._state.profilePage.newPostAdd = action.newSymbol;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MY-MESSAGE') {
+            let newMessage = {
+                id: 5,
+                message: action.postMessage
+            }
+            this._state.messagesPage.messagesData.push(newMessage);
+            this._state.messagesPage.updateMessage = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MESSAGE') {
+            this._state.messagesPage.updateMessage = action.newSymbol;
+            this._callSubscriber(this._state);
+        }
+    }
+
+    // addMyPost (postMessage) {
+    //     let newPost = {
+    //         id:4,
+    //         post: postMessage,
+    //         like: 0
+    //     }
+    //     this._state.profilePage.myPostsData.push(newPost);
+    //     this._state.profilePage.newPostAdd = '';
+    //     this._callSubscriber(this._state);
+    // },
+    // addMyMessage (postMessage) {
+    //     let newMessage = {
+    //         id: 5,
+    //         message: postMessage
+    //     }
+    //     this._state.messagesPage.messagesData.push(newMessage);
+    //     this._state.messagesPage.updateMessage = '';
+    //     this._callSubscriber(this._state);
+    // },
+    // updateNewPost (newSymbol) {
+    //     this._state.profilePage.newPostAdd = newSymbol;
+    //     this._callSubscriber(this._state);
+    // },
+    // updateNewMessage(newSymbol) {
+    //     this._state.messagesPage.updateMessage = newSymbol;
+    //     this._callSubscriber(this._state);
+    // },
+
 }
 
 export default store;
