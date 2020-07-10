@@ -2,6 +2,7 @@ import React from "react";
 import classes from './Messages.module.css'
 import UsersItem from "./UsersItem/UsersItem";
 import MessagesItem from "./MessagesItem/MessagesItem";
+import {addMyMessageActionCreator, updateNewMessageActionCreator} from "../../redux/state";
 
 const Messages = (props) => {
 
@@ -15,7 +16,7 @@ const Messages = (props) => {
     //Нажимаем на кнопку
     let addMessage = () => {
         let text = newMessageElement.current.value;
-        props.dispatch({type:'ADD-MY-MESSAGE', postMessage: text});
+        props.dispatch(addMyMessageActionCreator(text));
     };
 
     let newMessageElement = React.createRef();
@@ -23,7 +24,7 @@ const Messages = (props) => {
     //FLUX система. Обработчик изменений в textarea
     let onChangeMessage = () => {
         let text = newMessageElement.current.value;
-        props.dispatch({type:'UPDATE-NEW-MESSAGE', newSymbol: text});
+        props.dispatch(updateNewMessageActionCreator(text));
     }
 
     //сама компонента Messages
