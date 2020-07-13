@@ -6,6 +6,7 @@ import {addMyMessageActionCreator, updateNewMessageActionCreator} from "../../re
 
 const Messages = (props) => {
 
+    //add textarea y addMessage logic
     let userElements = props.userItemData.map(n => (
         <UsersItem id={n.id} name={n.name} />
     ))
