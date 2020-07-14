@@ -12,7 +12,6 @@ import NewsFriends from "./components/Newsfriends/NewsFriends";
 import NewsGroups from "./components/NewsGroups/NewsGroups";
 
 
-
 const App = (props) => {
     return (
         <BrowserRouter>
@@ -21,7 +20,7 @@ const App = (props) => {
                 <div className={'site-wrapper-nav'}><Nav /></div>
                 <div className={'site-wrapper-account'}><Account /></div>
                 <div className={'site-wrapper-friends'}>
-                    <Friends myFriendsData={props.myState.friendsPage.myFriendsData}/>
+                    <Friends myFriendsData={props.myState.friendsPage.myFriendsData} />
                 </div>
                 <div className={'site-wrapper-feed'}>
                     <Route path={'/profile'} render={() =>
@@ -37,8 +36,13 @@ const App = (props) => {
                             updateMessage={props.myState.messagesPage.updateMessage}
                             dispatch={props.dispatch}
                         />} />
+                    <Route path={'/groups'} render={() =>
+                        <NewsGroups
+                            postsGroups={props.myState.newsGroupsPage.postsGroups}
+                            dispatch={props.dispatch}
+                            messageData={props.myState.newsGroupsPage.newPostGroup}
+                        />} />
                     <Route path={'/news'} component={NewsFriends} />
-                    <Route path={'/groups'} component={NewsGroups} />
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>
             </div>

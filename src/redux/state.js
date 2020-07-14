@@ -50,6 +50,14 @@ let store = {
                 {id: 5, name: "Viktor", link: "/viktor"},
                 {id: 6, name: "Anna", link: "/anna"}
             ]
+        },
+
+        newsGroupsPage: {
+            postsGroups: [
+                {id:1, post: 'This is new post in my group'},
+                {id:2, post: 'This is second post from my friend'}
+            ],
+            newPostGroup: ''
         }
     },
     _callSubscriber() {
@@ -86,6 +94,15 @@ let store = {
         } else if (action.type === UPDATE_NEW_MESSAGE) {
             this._state.messagesPage.updateMessage = action.newSymbol;
             this._callSubscriber(this._state);
+        } else if (action.type === ADD_POST_GROUP) {
+            let body = this._state.newsGroupsPage.newPostGroup;
+            let newPostGroup = {id:3, post: body};
+            this._state.newsGroupsPage.postsGroups.push(newPostGroup);
+            this._state.newsGroupsPage.newPostGroup = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_POST_GROUP) {
+            this._state.newsGroupsPage.newPostGroup = action.newLetter;
+            this._callSubscriber(this._state);
         }
     }
 
@@ -95,7 +112,8 @@ const ADD_MY_POST = 'ADD-MY-POST';
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
 const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
 const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
-
+const ADD_POST_GROUP = 'ADD-POST-GROUP';
+const UPDATE_NEW_POST_GROUP = 'UPDATE-NEW-POST-GROUP';
 
 export const addMyPostActionCreator = (text) => {
     return {type: ADD_MY_POST, postMessage: text}
@@ -111,6 +129,14 @@ export const addMyMessageActionCreator = (text) => {
 
 export const updateNewMessageActionCreator = (text) => {
     return {type: UPDATE_NEW_MESSAGE, newSymbol: text}
+}
+
+export  const addPostGroupCreator = () => {
+    return {type: ADD_POST_GROUP}
+}
+
+export  const updateNewLetterCreator = (body) => {
+    return {type: UPDATE_NEW_POST_GROUP, newLetter: body}
 }
 
 export default store;
