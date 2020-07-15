@@ -9,7 +9,15 @@ export  const updateNewLetterCreator = (body) => {
     return {type: UPDATE_NEW_POST_GROUP, newLetter: body}
 }
 
-const newsGroupsPageReducer = (state, action) => {
+let initialState = {
+    postsGroups: [
+        {id: 1, post: 'This is new post in my group'},
+        {id: 2, post: 'This is second post from my friend'}
+    ],
+    newPostGroup: ''
+}
+
+const newsGroupsPageReducer = (state = initialState, action) => {
     if (action.type === ADD_POST_GROUP) {
         let body = state.newPostGroup;
         let newPostGroup = {id: 3, post: body};
