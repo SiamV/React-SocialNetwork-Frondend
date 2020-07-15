@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './NewPostAdd.module.css'
-import {addMyPostActionCreator, updateNewPostActionCreator} from "../../../redux/state";
+import {addMyPostActionCreator, updateNewPostActionCreator} from "../../../redux/profilePageReducer";
 
 const NewPostAdd = (props) => {
 

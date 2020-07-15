@@ -1,3 +1,36 @@
-.NewsGroups {
+.NewsGroups textarea {
+    position: relative;
+    max-width: 400px;
+    background: white;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 16px;
+    margin: 20px auto 5px 10px;
+}
 
+.NewsGroups button {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: 7px;
+    margin-right: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    background: rgb(64, 199, 129);
+    box-shadow: 0 -3px rgb(53, 167, 110) inset;
+    transition: 0.2s;
+}
+
+.NewsGroups button:hover {
+    background: rgb(53, 167, 110);
+}
+
+.NewsGroups button:active {
+    background: rgb(33, 147, 90);
+    box-shadow: 0 3px rgb(33, 147, 90) inset;
+}
+
+.NewsGroupsFielder {
+    margin: 10px;
+    font-size: 18px;
 }

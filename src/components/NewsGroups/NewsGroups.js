@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './NewsGroups.module.css';
-import {addPostGroupCreator, updateNewLetterCreator} from "../../redux/state";
+import {addPostGroupCreator, updateNewLetterCreator} from "../../redux/newsGroupsPageReducer";
 import NewsGroupsPosts from "./NewsGroupsItem/NewsGroupsPosts";
 
 const NewsGroups = (props) => {
@@ -27,7 +27,7 @@ const NewsGroups = (props) => {
                 cols="30" rows="10" />
             <button onClick={onClickAddPostGroup}>Add post</button>
 
-            {messagesElements}
+            <div className={classes.NewsGroupsFielder}>{messagesElements}</div>
         </div>
     )
 }

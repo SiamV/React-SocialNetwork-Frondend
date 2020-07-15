@@ -1,3 +1,8 @@
+import friendsPageReducer from "./friendsPageReducer";
+import profilePageReducer from "./profilePageReducer";
+import newsGroupsPageReducer from "./newsGroupsPageReducer";
+import messagePageReducer from "./messagesPageReducer"
+
 let store = {
     _state: {
         profilePage: {
@@ -54,8 +59,8 @@ let store = {
 
         newsGroupsPage: {
             postsGroups: [
-                {id:1, post: 'This is new post in my group'},
-                {id:2, post: 'This is second post from my friend'}
+                {id: 1, post: 'This is new post in my group'},
+                {id: 2, post: 'This is second post from my friend'}
             ],
             newPostGroup: ''
         }
@@ -71,72 +76,14 @@ let store = {
     },
 
     dispatch(action) { //{type: 'ADD-MY-POST'}
-        if (action.type === ADD_MY_POST) {
-            let newPost = {
-                id: 4,
-                post: action.postMessage,
-                like: 0
-            }
-            this._state.profilePage.myPostsData.push(newPost);
-            this._state.profilePage.newPostAdd = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST) {
-            this._state.profilePage.newPostAdd = action.newSymbol;
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_MY_MESSAGE) {
-            let newMessage = {
-                id: 5,
-                message: action.postMessage
-            }
-            this._state.messagesPage.messagesData.push(newMessage);
-            this._state.messagesPage.updateMessage = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_MESSAGE) {
-            this._state.messagesPage.updateMessage = action.newSymbol;
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_POST_GROUP) {
-            let body = this._state.newsGroupsPage.newPostGroup;
-            let newPostGroup = {id:3, post: body};
-            this._state.newsGroupsPage.postsGroups.push(newPostGroup);
-            this._state.newsGroupsPage.newPostGroup = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST_GROUP) {
-            this._state.newsGroupsPage.newPostGroup = action.newLetter;
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagePageReducer(this._state.messagesPage, action);
+        this._state.friendsPage = friendsPageReducer(this._state.friendsPage, action);
+        this._state.newsGroupsPage = newsGroupsPageReducer(this._state.newsGroupsPage, action)
+
+        this._callSubscriber(this._state);
     }
 
-}
-
-const ADD_MY_POST = 'ADD-MY-POST';
-const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
-const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
-const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
-const ADD_POST_GROUP = 'ADD-POST-GROUP';
-const UPDATE_NEW_POST_GROUP = 'UPDATE-NEW-POST-GROUP';
-
-export const addMyPostActionCreator = (text) => {
-    return {type: ADD_MY_POST, postMessage: text}
-}
-
-export const updateNewPostActionCreator = (text) => {
-    return {type: UPDATE_NEW_POST, newSymbol: text}
-}
-
-export const addMyMessageActionCreator = (text) => {
-    return {type: ADD_MY_MESSAGE, postMessage: text}
-}
-
-export const updateNewMessageActionCreator = (text) => {
-    return {type: UPDATE_NEW_MESSAGE, newSymbol: text}
-}
-
-export  const addPostGroupCreator = () => {
-    return {type: ADD_POST_GROUP}
-}
-
-export  const updateNewLetterCreator = (body) => {
-    return {type: UPDATE_NEW_POST_GROUP, newLetter: body}
 }
 
 export default store;

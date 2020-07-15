@@ -2,7 +2,7 @@ import React from "react";
 import classes from './Messages.module.css'
 import UsersItem from "./UsersItem/UsersItem";
 import MessagesItem from "./MessagesItem/MessagesItem";
-import {addMyMessageActionCreator, updateNewMessageActionCreator} from "../../redux/state";
+import {addMyMessageActionCreator, updateNewMessageActionCreator} from "../../redux/messagesPageReducer";
 
 const Messages = (props) => {
 

@@ -39,8 +39,8 @@ const App = (props) => {
                     <Route path={'/groups'} render={() =>
                         <NewsGroups
                             postsGroups={props.myState.newsGroupsPage.postsGroups}
-                            dispatch={props.dispatch}
                             messageData={props.myState.newsGroupsPage.newPostGroup}
+                            dispatch={props.dispatch}
                         />} />
                     <Route path={'/news'} component={NewsFriends} />
                 </div>
