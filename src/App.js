@@ -9,7 +9,7 @@ import Messages from "./components/Messages/Messages";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route} from "react-router-dom";
 import NewsFriends from "./components/Newsfriends/NewsFriends";
-import NewsGroups from "./components/NewsGroups/NewsGroups";
+import NewsGroupsContainer from "./components/NewsGroups/NewsGroupsContainer";
 
 
 const App = (props) => {
@@ -37,11 +37,13 @@ const App = (props) => {
                             dispatch={props.dispatch}
                         />} />
                     <Route path={'/groups'} render={() =>
-                        <NewsGroups
-                            postsGroups={props.myState.newsGroupsPage.postsGroups}
-                            messageData={props.myState.newsGroupsPage.newPostGroup}
-                            dispatch={props.dispatch}
-                        />} />
+                        <NewsGroupsContainer store={props.store} />
+                    } />
+                        {/*// <NewsGroups*/}
+                        {/*//     postsGroups={props.myState.newsGroupsPage.postsGroups}*/}
+                        {/*//     messageData={props.myState.newsGroupsPage.newPostGroup}*/}
+                        {/*//     dispatch={props.dispatch}*/}
+                        {/*// />} />*/}
                     <Route path={'/news'} component={NewsFriends} />
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>
