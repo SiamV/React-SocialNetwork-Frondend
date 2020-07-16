@@ -25,9 +25,7 @@ const App = (props) => {
                 <div className={'site-wrapper-feed'}>
                     <Route path={'/profile'} render={() =>
                         <Profile
-                            myPostsData={props.myState.profilePage.myPostsData}
-                            newPostAdd={props.myState.profilePage.newPostAdd}
-                            dispatch={props.dispatch}
+                            store={props.store}
                         />} />
                     <Route path={'/messages'} render={() =>
                         <MessagesContainer store={props.store} />

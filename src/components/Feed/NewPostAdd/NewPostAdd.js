@@ -1,19 +1,19 @@
 import React from "react";
 import classes from './NewPostAdd.module.css'
-import {addMyPostActionCreator, updateNewPostActionCreator} from "../../../redux/profilePageReducer";
 
 const NewPostAdd = (props) => {
 
-    let addPost = () => {
+    let onClickAddPost = () => {
         let text = newPostElement.current.value;
-        props.dispatch(addMyPostActionCreator(text));
+        props.addPost(text);
+        debugger;
     }
 
     let newPostElement = React.createRef();
 
     let onChangePost = () => {
         let text = newPostElement.current.value;
-        props.dispatch(updateNewPostActionCreator(text));
+        props.onWritePost(text);
     }
 
     return (
@@ -22,7 +22,7 @@ const NewPostAdd = (props) => {
             <textarea value={props.newPostAdd} onChange={onChangePost} ref={newPostElement}
                       placeholder={'new post...'} />
             <div>
-                <button onClick={addPost}>Add</button>
+                <button onClick={onClickAddPost}>Add</button>
                 <button>Delete</button>
             </div>
         </div>
