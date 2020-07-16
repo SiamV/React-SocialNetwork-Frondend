@@ -5,11 +5,11 @@ import Nav from "./components/Nav/Nav";
 import Account from "./components/Account/Account";
 import Friends from "./components/Friends/Friends";
 import Profile from "./components/Feed/Profile";
-import Messages from "./components/Messages/Messages";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route} from "react-router-dom";
 import NewsFriends from "./components/Newsfriends/NewsFriends";
 import NewsGroupsContainer from "./components/NewsGroups/NewsGroupsContainer";
+import MessagesContainer from "./components/Messages/MessagesContainer";
 
 
 const App = (props) => {
@@ -30,12 +30,14 @@ const App = (props) => {
                             dispatch={props.dispatch}
                         />} />
                     <Route path={'/messages'} render={() =>
-                        <Messages
-                            userItemData={props.myState.messagesPage.userItemData}
-                            messagesData={props.myState.messagesPage.messagesData}
-                            updateMessage={props.myState.messagesPage.updateMessage}
-                            dispatch={props.dispatch}
-                        />} />
+                        <MessagesContainer store={props.store} />
+                        // <Messages
+                        //     userItemData={props.myState.messagesPage.userItemData}
+                        //     messagesData={props.myState.messagesPage.messagesData}
+                        //     updateMessage={props.myState.messagesPage.updateMessage}
+                        //     dispatch={props.dispatch}
+                        // />
+                    } />
                     <Route path={'/groups'} render={() =>
                         <NewsGroupsContainer store={props.store} />
                     } />

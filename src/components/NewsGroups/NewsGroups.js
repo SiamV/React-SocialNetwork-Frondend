@@ -1,6 +1,5 @@
 import React from "react";
 import classes from './NewsGroups.module.css';
-import {addPostGroupCreator, updateNewLetterCreator} from "../../redux/newsGroupsPageReducer";
 import NewsGroupsPosts from "./NewsGroupsItem/NewsGroupsPosts";
 
 const NewsGroups = (props) => {
