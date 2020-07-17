@@ -4,17 +4,17 @@ import './index.css';
 import store from "./redux/store-redux";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import StoreContext from "./contextAPI/StoreContext";
+import {Provider} from "react-redux";
 
 //rerenderTree функция, которая в нужный момент перерисовыет всё дерево
 let rerenderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App
                     myState={store.getState()}
                 />
-            </StoreContext.Provider>
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
