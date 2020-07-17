@@ -24,26 +24,14 @@ const App = (props) => {
                 </div>
                 <div className={'site-wrapper-feed'}>
                     <Route path={'/profile'} render={() =>
-                        <Profile
-                            store={props.store}
-                        />} />
+                        <Profile />
+                    } />
                     <Route path={'/messages'} render={() =>
-                        <MessagesContainer store={props.store} />
-                        // <Messages
-                        //     userItemData={props.myState.messagesPage.userItemData}
-                        //     messagesData={props.myState.messagesPage.messagesData}
-                        //     updateMessage={props.myState.messagesPage.updateMessage}
-                        //     dispatch={props.dispatch}
-                        // />
+                        <MessagesContainer />
                     } />
                     <Route path={'/groups'} render={() =>
-                        <NewsGroupsContainer store={props.store} />
+                        <NewsGroupsContainer />
                     } />
-                        {/*// <NewsGroups*/}
-                        {/*//     postsGroups={props.myState.newsGroupsPage.postsGroups}*/}
-                        {/*//     messageData={props.myState.newsGroupsPage.newPostGroup}*/}
-                        {/*//     dispatch={props.dispatch}*/}
-                        {/*// />} />*/}
                     <Route path={'/news'} component={NewsFriends} />
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>

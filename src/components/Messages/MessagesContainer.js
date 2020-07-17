@@ -1,29 +1,30 @@
 import React from "react";
 import {addMyMessageActionCreator, updateNewMessageActionCreator} from "../../redux/messagesPageReducer";
 import Messages from "./Messages";
+import StoreContext from "../../contextAPI/StoreContext";
 
-const MessagesContainer = (props) => {
-
-    //Нажимаем на кнопку
-    let addMessage = (text) => {
-        props.store.dispatch(addMyMessageActionCreator(text));
-    };
-
-    //FLUX система. Обработчик изменений в textarea
-    let onChangeMessage = (text) => {
-        props.store.dispatch(updateNewMessageActionCreator(text));
-    }
-
-    //сама компонента Messages
+const MessagesContainer = () => {
     return (
-        <div>
-            <Messages addMessage={addMessage}
-                      onChangeMessage={onChangeMessage}
-                      userItemData={props.store.getState().messagesPage.userItemData}
-                      messagesData={props.store.getState().messagesPage.messagesData}
-                      updateMessage={props.store.getState().messagesPage.updateMessage}
-            />
-        </div>
+        <StoreContext.Consumer>
+            {(store) => {
+                //Нажимаем на кнопку
+                let addMessage = (text) => {
+                    store.dispatch(addMyMessageActionCreator(text));
+                };
+                //FLUX система. Обработчик изменений в textarea
+                let onChangeMessage = (text) => {
+                    store.dispatch(updateNewMessageActionCreator(text));
+                }
+                return <div>
+                    <Messages addMessage={addMessage}
+                              onChangeMessage={onChangeMessage}
+                              userItemData={store.getState().messagesPage.userItemData}
+                              messagesData={store.getState().messagesPage.messagesData}
+                              updateMessage={store.getState().messagesPage.updateMessage}
+                    />
+                </div>
+            }}
+        </StoreContext.Consumer>
     );
 }
 

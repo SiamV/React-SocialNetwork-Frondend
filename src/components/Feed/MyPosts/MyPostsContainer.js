@@ -1,13 +1,17 @@
 import React from "react";
 import MyPosts from "./MyPosts";
+import StoreContext from "../../../contextAPI/StoreContext";
 
 
-const MyPostsContainer = (props) => {
-
+const MyPostsContainer = () => {
     return (
-        <div>
-            <MyPosts myPostsData={props.store.getState().profilePage.myPostsData}/>
-        </div>
+        <StoreContext.Consumer>
+            {(store) => {
+                return <div>
+                    <MyPosts myPostsData={store.getState().profilePage.myPostsData} />
+                </div>
+            }}
+        </StoreContext.Consumer>
     )
 }
 
