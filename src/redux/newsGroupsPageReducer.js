@@ -18,15 +18,28 @@ let initialState = {
 }
 
 const newsGroupsPageReducer = (state = initialState, action) => {
-    if (action.type === ADD_POST_GROUP) {
-        let body = state.newPostGroup;
-        let newPostGroup = {id: 3, post: body};
-        state.postsGroups.push(newPostGroup);
-        state.newPostGroup = '';
-    } else if (action.type === UPDATE_NEW_POST_GROUP) {
-        state.newPostGroup = action.newLetter;
+    switch (action.type) {
+        case ADD_POST_GROUP: {
+            let newPostGroup = {
+                id: 3,
+                post: state.newPostGroup
+            };
+            //make the copy
+            let stateCopy = {...state}
+            stateCopy.postsGroups = [...state.postsGroups]
+            //use copy
+            stateCopy.postsGroups.push(newPostGroup);
+            stateCopy.newPostGroup = '';
+            return stateCopy;
+        }
+        case UPDATE_NEW_POST_GROUP: {
+            let stateCopy = {...state}
+            stateCopy.newPostGroup = action.newLetter;
+            return stateCopy;
+        }
+        default:
+            return state;
     }
-    return state;
 }
 
 export default newsGroupsPageReducer;

@@ -27,18 +27,28 @@ let initialState = {
 }
 
 const messagePageReducer = (state = initialState,action) => {
-    if (action.type === ADD_MY_MESSAGE) {
-        let newMessage = {
-            id: 5,
-            message: action.postMessage
+    switch (action.type) {
+        case ADD_MY_MESSAGE: {
+            let newMessage = {
+                id: 5,
+                message: action.postMessage
+            }
+            //make the copy
+            let stateCopy = {...state};
+            stateCopy.messagesData = [...state.messagesData];
+            //use the copy
+            stateCopy.messagesData.push(newMessage);
+            stateCopy.updateMessage = '';
+            return stateCopy;
         }
-        state.messagesData.push(newMessage);
-        state.updateMessage = '';
-    } else if (action.type === UPDATE_NEW_MESSAGE) {
-        state.updateMessage = action.newSymbol;
+        case UPDATE_NEW_MESSAGE: {
+            let stateCopy = {...state}
+            stateCopy.updateMessage = action.newSymbol;
+            return stateCopy;
+        }
+        default:
+            return state;
     }
-
-    return state;
 }
 
 export default messagePageReducer;

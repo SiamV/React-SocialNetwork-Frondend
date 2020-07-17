@@ -35,19 +35,30 @@ let initialState = {
 }
 
 const profilePageReducer = (state = initialState, action) => {
-    if (action.type === ADD_MY_POST) {
-        let newPost = {
-            id: 4,
-            post: action.postMessage,
-            like: 0
+    switch (action.type) {
+        case ADD_MY_POST: {
+            let newPost = {
+                id: 4,
+                post: action.postMessage,
+                like: 0
+            }
+            //make the copy
+            let stateCopy = {...state};
+            stateCopy.myPostsData = [...state.myPostsData];
+            //use the copy
+            stateCopy.myPostsData.push(newPost);
+            stateCopy.newPostAdd = '';
+            return stateCopy;
         }
-        state.myPostsData.push(newPost);
-        state.newPostAdd = '';
-    } else if (action.type === UPDATE_NEW_POST) {
-        state.newPostAdd = action.newSymbol;
+        case UPDATE_NEW_POST: {
+            let stateCopy = {...state};
+            stateCopy.newPostAdd = action.newSymbol;
+            return stateCopy;
+        }
+        default:
+            return state;
     }
-
-    return state;
 }
+
 
 export default profilePageReducer;
