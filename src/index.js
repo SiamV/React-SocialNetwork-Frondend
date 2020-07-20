@@ -6,8 +6,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 
+//убрали rerenderTree(), т.к. мы используем connect React-Redux, а он сам вызывает подписчиков в контейнерных
+// компонентах
+
 //rerenderTree функция, которая в нужный момент перерисовыет всё дерево
-let rerenderTree = () => {
+// let rerenderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
@@ -18,15 +21,15 @@ let rerenderTree = () => {
         </React.StrictMode>,
         document.getElementById('root')
     );
-}
-rerenderTree(); //запускаем первую отрисовку
-
-//передаем rerenderTree в subscribe
-store.subscribe(() => { //но у меня работало и так: store.subscribe (rerenderTree); Но пишут, что dispatch не
-    // передает state
-    let state = store.getState();
-    rerenderTree(state);
-}); //исключаем циклическую зависимость. используем callback -
+// }
+// rerenderTree(); //запускаем первую отрисовку
+//
+// //передаем rerenderTree в subscribe
+// store.subscribe(() => { //но у меня работало и так: store.subscribe (rerenderTree); Но пишут, что dispatch не
+//     // передает state
+//     let state = store.getState();
+//     rerenderTree(state);
+// }); //исключаем циклическую зависимость. используем callback -
 
 
 // If you want your app to work offline and load faster, you can change
