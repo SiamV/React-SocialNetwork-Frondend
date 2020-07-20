@@ -6,7 +6,7 @@ const  Friends = (props) => {
 
 
     let friendsElements = props.myFriendsData.map(f => (
-        <NavLink to={f.link} className={classes.NavLink}>{f.name}</NavLink>
+        <NavLink to={f.link} className={classes.NavLink} key={f.id}>{f.name}</NavLink>
     ))
 
     return (

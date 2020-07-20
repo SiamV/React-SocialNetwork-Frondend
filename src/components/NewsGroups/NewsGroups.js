@@ -14,7 +14,7 @@ const NewsGroups = (props) => {
     }
 
     let messagesElements = props.postsGroups.map(m => (
-        <NewsGroupsPosts message={m.post} />
+        <NewsGroupsPosts message={m.post} key={m.id}/>
     ))
 
     return (

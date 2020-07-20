@@ -7,10 +7,10 @@ const Messages = (props) => {
 
     //add textarea y addMessage logic
     let userElements = props.userItemData.map(n => (
-        <UsersItem id={n.id} name={n.name} />
+        <UsersItem id={n.id} name={n.name} key={n.id}/>
     ))
     let messagesElements = props.messagesData.map(m => (
-        <MessagesItem message={m.message} />
+        <MessagesItem message={m.message} key={m.id}/>
     ))
 
     //Нажимаем на кнопку

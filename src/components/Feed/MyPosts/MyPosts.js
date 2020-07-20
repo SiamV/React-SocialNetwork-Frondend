@@ -5,7 +5,7 @@ import classes from "./MyPosts.module.css"
 const MyPosts = (props) => {
 
     let postsElements = props.myPostsData.map(p => (
-        <Post description={p.post} like={p.like} />
+        <Post description={p.post} like={p.like} key={p.id}/>
     ))
 
     return (
