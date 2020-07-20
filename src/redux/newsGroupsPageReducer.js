@@ -18,7 +18,7 @@ let initialState = {
 }
 
 const newsGroupsPageReducer = (state = initialState, action) => {
-    //make the copy
+    //make the copy. Option 1.
     let stateCopy = {...state,
         postsGroups: [...state.postsGroups]
     }
@@ -35,7 +35,6 @@ const newsGroupsPageReducer = (state = initialState, action) => {
             return stateCopy;
         }
         case UPDATE_NEW_POST_GROUP: {
-            let stateCopy = {...state}
             stateCopy.newPostGroup = action.newLetter;
             return stateCopy;
         }

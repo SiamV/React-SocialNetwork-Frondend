@@ -33,18 +33,16 @@ const messagePageReducer = (state = initialState,action) => {
                 id: 5,
                 message: action.postMessage
             }
-            //make the copy
-            let stateCopy = {...state};
-            stateCopy.messagesData = [...state.messagesData];
-            //use the copy
-            stateCopy.messagesData.push(newMessage);
-            stateCopy.updateMessage = '';
-            return stateCopy;
+            //make the copy и логика. Return копии части state, которую мы меняем. Option 2.
+            return {...state,
+                messagesData: [...state.messagesData, newMessage],
+                updateMessage: ''
+            };
         }
         case UPDATE_NEW_MESSAGE: {
-            let stateCopy = {...state}
-            stateCopy.updateMessage = action.newSymbol;
-            return stateCopy;
+            return {...state,
+                updateMessage: action.newSymbol
+            }
         }
         default:
             return state;

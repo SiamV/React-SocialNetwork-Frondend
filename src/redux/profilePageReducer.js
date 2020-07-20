@@ -31,7 +31,7 @@ let initialState = {
                 ' Неважно, пишем ли мы кнопку, форму или целый экран: все они, как правило, представляют собой' +
                 ' компоненты в React-приложениях.', like: 120
         }],
-        newPostAdd: ''
+    newPostAdd: ''
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -42,18 +42,18 @@ const profilePageReducer = (state = initialState, action) => {
                 post: action.postMessage,
                 like: 0
             }
-            //make the copy
-            let stateCopy = {...state};
-            stateCopy.myPostsData = [...state.myPostsData];
-            //use the copy
-            stateCopy.myPostsData.push(newPost);
-            stateCopy.newPostAdd = '';
-            return stateCopy;
+            //make the copy и логика. Return копии части state, которую мы меняем. Option 2.
+            return {
+                ...state,
+                myPostsData: [...state.myPostsData, newPost],
+                newPostAdd: ''
+            };
         }
         case UPDATE_NEW_POST: {
-            let stateCopy = {...state};
-            stateCopy.newPostAdd = action.newSymbol;
-            return stateCopy;
+            return {
+                ...state,
+                newPostAdd: action.newSymbol
+            };
         }
         default:
             return state;
