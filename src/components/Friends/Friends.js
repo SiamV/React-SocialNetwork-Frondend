@@ -11,10 +11,16 @@ const  Friends = (props) => {
 
     return (
         <div className={classes.myFriends}>
-            <span>Friends:</span>
+            <div>
+            <span>To find new friends:</span>
+            <button><NavLink to={'/users'}>go!</NavLink></button>
+            </div>
+            <div>
+            <span>My friends:</span>
             <ul>
                 {friendsElements}
             </ul>
+            </div>
         </div>
     );
 }

@@ -3,25 +3,24 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Account from "./components/Account/Account";
-import Friends from "./components/Friends/Friends";
 import Profile from "./components/Feed/Profile";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route} from "react-router-dom";
 import NewsFriends from "./components/Newsfriends/NewsFriends";
 import NewsGroupsContainer from "./components/NewsGroups/NewsGroupsContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
+import FriendContainer from "./components/Friends/FriendContainer";
+import Users from "./components/Users/Users";
 
 
-const App = (props) => {
+const App = () => {
     return (
         <BrowserRouter>
             <div className={'site-wrapper'}>
                 <div className={'site-wrapper-header'}><Header /></div>
                 <div className={'site-wrapper-nav'}><Nav /></div>
                 <div className={'site-wrapper-account'}><Account /></div>
-                <div className={'site-wrapper-friends'}>
-                    <Friends myFriendsData={props.myState.friendsPage.myFriendsData} />
-                </div>
+                <div className={'site-wrapper-friends'}><FriendContainer /></div>
                 <div className={'site-wrapper-feed'}>
                     <Route path={'/profile'} render={() =>
                         <Profile />
@@ -33,6 +32,9 @@ const App = (props) => {
                         <NewsGroupsContainer />
                     } />
                     <Route path={'/news'} component={NewsFriends} />
+                    <Route path={'/users'} render={() =>
+                        <Users />
+                    } />
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>
             </div>
@@ -43,21 +45,6 @@ const App = (props) => {
 export default App;
 
 
-// import React from 'react';
-// import './App.css';
-// import Header from "./components/Header/Header";
-// import Nav from "./components/Nav/Nav";
-// import Account from "./components/Account/Account";
-// import Friends from "./components/Friends/Friends";
-// import Profile from "./components/Feed/Profile";
-// import Messages from "./components/Messages/Messages";
-// import Sidebar from "./components/Sidebar/Sidebar";
-// import {BrowserRouter, Route} from "react-router-dom";
-// import NewsFriends from "./components/Newsfriends/NewsFriends";
-// import NewsGroups from "./components/NewsGroups/NewsGroups";
-//
-//
-//
 // const App = (props) => {
 //     return (
 //         <BrowserRouter>
