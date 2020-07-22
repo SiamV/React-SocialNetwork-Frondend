@@ -1,7 +1,22 @@
 import React from "react";
 import classes from "./Users.module.css"
+import * as axios from "axios";
 
 const Users = (props) => {
+
+    if(props.users.length === 0){
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then( response => {
+                console.log(response);
+
+            })
+    // props.setUsers ([
+    //     {id:1, followed: false, fullName: 'Elena Maslova', location: {city: 'Moscow', country: 'Russia'}},
+    //     {id:2, followed: false, fullName: 'Denis Krasnov', location: {city: 'Ramenskoe', country: 'Russia'}},
+    //     {id:3, followed: true, fullName: 'Evgenia Vasileva', location: {city: 'Kaliningrad', country: 'Russia'}},
+    // ])
+    }
+
     return (
         <div className={classes.users}>
             {props.users.map(u => <div key={u.id}>

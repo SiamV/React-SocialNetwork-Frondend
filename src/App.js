@@ -10,7 +10,6 @@ import NewsFriends from "./components/Newsfriends/NewsFriends";
 import NewsGroupsContainer from "./components/NewsGroups/NewsGroupsContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import FriendContainer from "./components/Friends/FriendContainer";
-import Users from "./components/Users/Users";
 import UsersContainer from "./components/Users/UsersContainer";
 
 
