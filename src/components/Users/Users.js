@@ -1,36 +1,59 @@
 import React from "react";
 import classes from "./Users.module.css"
 import * as axios from "axios";
+import fotoDefault from '../../drawable/avatarDefault.png'
 
 const Users = (props) => {
 
-    if(props.users.length === 0){
+    if (props.users.length === 0) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then( response => {
+            .then(response => {
                 console.log(response);
-
+                props.setUsers(response.data.items)
             })
-    // props.setUsers ([
-    //     {id:1, followed: false, fullName: 'Elena Maslova', location: {city: 'Moscow', country: 'Russia'}},
-    //     {id:2, followed: false, fullName: 'Denis Krasnov', location: {city: 'Ramenskoe', country: 'Russia'}},
-    //     {id:3, followed: true, fullName: 'Evgenia Vasileva', location: {city: 'Kaliningrad', country: 'Russia'}},
-    // ])
     }
+    //Через dispatch мы получили с сервера такой массив с данными:
+    //  data:
+    //         error: null
+    //   items: Array(10)
+    //              0:
+    //              followed: false
+    //              id: 9475
+    //              name: "esenoukg"
+    //              photos: {small: null, large: null}
+    //              status: null
+    //              uniqueUrlName: null
+    //              __proto__: Object
+    //     1: {name: "esenou", id: 9474, uniqueUrlName: null, photos: {…}, status: null, …}
+    //     2: {name: "Ben", id: 9473, uniqueUrlName: null, photos: {…}, status: null, …}
+    //     3: {name: "LSD", id: 9472, uniqueUrlName: null, photos: {…}, status: null, …}
+    //     4: {name: "fromery", id: 9471, uniqueUrlName: null, photos: {…}, status: null, …}
+    //     5: {name: "VenchasS", id: 9470, uniqueUrlName: null, photos: {…}, status: null, …}
+    //     6: {name: "VTreactJS", id: 9469, uniqueUrlName: null, photos: {…}, status: null, …}
+    //     7: {name: "ArtyWallace", id: 9468, uniqueUrlName: null, photos: {…}, status: null, …}
+    //     8: {name: "Wallace", id: 9467, uniqueUrlName: null, photos: {…}, status: null, …}
+    //     9: {name: "siegheart", id: 9466, uniqueUrlName: null, photos: {…}, status: null, …}
 
     return (
         <div className={classes.users}>
             {props.users.map(u => <div key={u.id}>
-                    <img src={'http://ooopsmagazine.com/wp-content/uploads/2019/10/imagen66-768x427.jpg'} alt={'photo'} />
+                    <img src={u.photos.small
+                    != null ? u.photos.small : fotoDefault}
+                         alt={'photo'} />
                     <div>
-                        { u.followed
-                            ? <button onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
-                            : <button onClick={() => {props.follow(u.id)}}>Follow</button>
+                        {u.followed
+                            ? <button onClick={() => {
+                                props.unfollow(u.id)
+                            }}>Unfollow</button>
+                            : <button onClick={() => {
+                                props.follow(u.id)
+                            }}>Follow</button>
 
                         }
                     </div>
-                    <div>{u.fullName}</div>
-                    <div>{u.location.country}</div>
-                    <div>{u.location.city}</div>
+                    <div>{u.name}</div>
+                    <div>{'u.location.country'}</div>
+                    <div>{'u.location.city'}</div>
                 </div>
             )}
         </div>
