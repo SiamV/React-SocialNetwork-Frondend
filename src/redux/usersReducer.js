@@ -8,24 +8,29 @@ let stateDefault = {
 
 const usersReducer = (state = stateDefault, action) => {
     switch (action.type) {
+        //логика если надо поменять часть в объекте, а не добавить
         case FOLLOW: {
-            let stateCopy = {...state,
-                users: [...state.users]
+            return  {...state,
+                users: state.users.map(u => {
+                    if(u.id === action.userId) {
+                        return {...u, followed: true}
+                    }
+                    return u;
+                })
             }
-            if (stateCopy.users.id === action.userId) {
-                stateCopy.users.followed = true;
-            }
-            return stateCopy;
         }
+
         case UNFOLLOW: {
-            let stateCopy = {...state,
-                users: [...state.users]
+            return {...state,
+                users: state.users.map(u => {
+                    if(u.id === action.userId) {
+                        return {...u, followed: false}
+                    }
+                    return u;
+                })
             }
-            if (stateCopy.users.id === action.userId) {
-                stateCopy.users.followed = false;
-            }
-            return stateCopy;
         }
+
         case SET_USERS: {
             let stateCopy = {...state,
                 users: [...state.users, ...action.users]
@@ -38,19 +43,19 @@ const usersReducer = (state = stateDefault, action) => {
 
 }
 
-export const FOLLOW = 'FOLLOW';
-export const UNFOLLOW = 'UNFOLLOW';
-export const SET_USERS = 'SET_USERS';
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
 
-const followAC = (userId) => ({
+export const followAC = (userId) => ({
     type: FOLLOW,
     userId: userId
 })
-const unfollowAC = (userId) => ({
+export const unfollowAC = (userId) => ({
     type: UNFOLLOW,
     userId: userId
 })
-const setUsersAC = (users) => ({
+export const setUsersAC = (users) => ({
     type: SET_USERS,
     users: users
 })

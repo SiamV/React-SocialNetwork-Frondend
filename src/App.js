@@ -11,6 +11,7 @@ import NewsGroupsContainer from "./components/NewsGroups/NewsGroupsContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import FriendContainer from "./components/Friends/FriendContainer";
 import Users from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
                     } />
                     <Route path={'/news'} component={NewsFriends} />
                     <Route path={'/users'} render={() =>
-                        <Users />
+                        <UsersContainer />
                     } />
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>
