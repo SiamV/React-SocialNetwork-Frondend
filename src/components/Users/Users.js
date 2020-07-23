@@ -3,17 +3,26 @@ import classes from "./Users.module.css"
 import * as axios from "axios";
 import fotoDefault from '../../drawable/avatarDefault.png'
 
-const Users = (props) => {
-
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    console.log(response);
-                    props.setUsers(response.data.items)
-                })
-        }
+class Users extends React.Component {
+    constructor(props) {
+        super(props);
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                console.log(response);
+                this.props.setUsers(response.data.items)
+            });
     }
+
+    //Заюзаем этот метод в конструкторе и сделаем get API запрос при создании нового объекта (компоненты) без кнопки
+    // getUsers = () => {
+    //     if (this.props.users.length === 0) {
+    //         axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    //             .then(response => {
+    //                 console.log(response);
+    //                 this.props.setUsers(response.data.items)
+    //             })
+    //     }
+    // }
 
     //Через dispatch мы получили с сервера такой массив с данными:
     //  data:
@@ -36,32 +45,33 @@ const Users = (props) => {
     //     7: {name: "ArtyWallace", id: 9468, uniqueUrlName: null, photos: {…}, status: null, …}
     //     8: {name: "Wallace", id: 9467, uniqueUrlName: null, photos: {…}, status: null, …}
     //     9: {name: "siegheart", id: 9466, uniqueUrlName: null, photos: {…}, status: null, …}
+    render() {
+        return (
+            <div className={classes.users}>
+                {/*<button onClick={this.getUsers}>Get Users</button>*/}
+                {this.props.users.map(u => <div key={u.id}>
+                        <img src={u.photos.small
+                        != null ? u.photos.small : fotoDefault}
+                             alt={'photo'} />
+                        <div>
+                            {u.followed
+                                ? <button onClick={() => {
+                                    this.props.unfollow(u.id)
+                                }}>Unfollow</button>
+                                : <button onClick={() => {
+                                    this.props.follow(u.id)
+                                }}>Follow</button>
 
-    return (
-        <div className={classes.users}>
-            <button onClick={getUsers}>Get Users</button>
-            {props.users.map(u => <div key={u.id}>
-                    <img src={u.photos.small
-                    != null ? u.photos.small : fotoDefault}
-                         alt={'photo'} />
-                    <div>
-                        {u.followed
-                            ? <button onClick={() => {
-                                props.unfollow(u.id)
-                            }}>Unfollow</button>
-                            : <button onClick={() => {
-                                props.follow(u.id)
-                            }}>Follow</button>
-
-                        }
+                            }
+                        </div>
+                        <div>{u.name}</div>
+                        <div>{'u.location.country'}</div>
+                        <div>{'u.location.city'}</div>
                     </div>
-                    <div>{u.name}</div>
-                    <div>{'u.location.country'}</div>
-                    <div>{'u.location.city'}</div>
-                </div>
-            )}
-        </div>
-    );
+                )}
+            </div>
+        );
+    }
 }
 
 export default Users;
