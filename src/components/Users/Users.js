@@ -5,13 +5,16 @@ import fotoDefault from '../../drawable/avatarDefault.png'
 
 const Users = (props) => {
 
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => {
-                console.log(response);
-                props.setUsers(response.data.items)
-            })
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+                .then(response => {
+                    console.log(response);
+                    props.setUsers(response.data.items)
+                })
+        }
     }
+
     //Через dispatch мы получили с сервера такой массив с данными:
     //  data:
     //         error: null
@@ -36,6 +39,7 @@ const Users = (props) => {
 
     return (
         <div className={classes.users}>
+            <button onClick={getUsers}>Get Users</button>
             {props.users.map(u => <div key={u.id}>
                     <img src={u.photos.small
                     != null ? u.photos.small : fotoDefault}
