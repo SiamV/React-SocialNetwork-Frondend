@@ -51,6 +51,7 @@ class Users extends React.Component {
     render() {
         return (
             <div className={classes.users}>
+                <div>1 2 3 4 5</div>
                 {this.props.users.map(u => <div key={u.id}>
                         <img src={u.photos.small
                         != null ? u.photos.small : fotoDefault}
