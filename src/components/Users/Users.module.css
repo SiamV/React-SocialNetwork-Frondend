@@ -8,4 +8,9 @@
 
 .users .current {
     font-weight: bold;
+
+}
+.users .othersNumbers {
+    cursor: pointer;
+    padding: 5px;
 }

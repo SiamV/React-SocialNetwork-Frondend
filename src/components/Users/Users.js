@@ -41,7 +41,7 @@ class Users extends React.Component {
                     return <span onClick={(e) => {
                         this.onPageChange(p)
                     }}
-                                 className={this.props.currentPage === p && classes.current}
+                                 className={this.props.currentPage === p ?classes.current :classes.othersNumbers}
                                  key={p.id}>{p}</span>
                 })}
                 </div>
