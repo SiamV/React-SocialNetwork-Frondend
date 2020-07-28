@@ -5,3 +5,7 @@
 .users img {
     width: 200px;
 }
+
+.users .current {
+    font-weight: bold;
+}

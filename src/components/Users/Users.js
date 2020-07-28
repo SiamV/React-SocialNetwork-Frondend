@@ -4,17 +4,74 @@ import * as axios from "axios";
 import fotoDefault from '../../drawable/avatarDefault.png'
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        //page - текущая страница, count - число пользователей на страницу
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`)
             .then(response => {
+                this.props.setUsers(response.data.items);
+                this.props.setTotalCountUsers(response.data.totalCount);
                 console.log(response);
-                this.props.setUsers(response.data.items)
             })
     }
+
+    //отправка get запроса при нажатии на цифры в span
+    onPageChange = (page) => {
+        this.props.setCurrentPage(page)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.countUsersPage}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+            })
+    }
+
+    render() {
+        //pagination
+        let countPage = Math.ceil(this.props.totalCountUsers / this.props.countUsersPage);
+        let pages = [];
+        for (let i = 1; i <= countPage; i++) {
+            pages.push(i);
+        }
+        ;
+        return (
+            <div className={classes.users}>
+                <div> {pages.map(p => {
+                    return <span onClick={(e) => {
+                        this.onPageChange(p)
+                    }}
+                                 className={this.props.currentPage === p && classes.current}
+                                 key={p.id}>{p}</span>
+                })}
+                </div>
+                {this.props.users.map(u => <div key={u.id}>
+                        <img src={u.photos.small
+                        != null ? u.photos.small : fotoDefault}
+                             alt={'photo'} />
+                        <div>
+                            {u.followed
+                                ? <button onClick={() => {
+                                    this.props.unfollow(u.id)
+                                }}>Unfollow</button>
+                                : <button onClick={() => {
+                                    this.props.follow(u.id)
+                                }}>Follow</button>
+
+                            }
+                        </div>
+                        <div>{u.name}</div>
+                        <div>{'u.location.country'}</div>
+                        <div>{'u.location.city'}</div>
+                    </div>
+                )}
+            </div>
+        );
+    }
+}
+
+export default Users;
+
 
 //Заюзаем этот метод в конструкторе и сделаем get API запрос при создании нового объекта (компоненты) без кнопки
 // getUsers = () => {
@@ -48,33 +105,3 @@ class Users extends React.Component {
 //     7: {name: "ArtyWallace", id: 9468, uniqueUrlName: null, photos: {…}, status: null, …}
 //     8: {name: "Wallace", id: 9467, uniqueUrlName: null, photos: {…}, status: null, …}
 //     9: {name: "siegheart", id: 9466, uniqueUrlName: null, photos: {…}, status: null, …}
-    render() {
-        return (
-            <div className={classes.users}>
-                <div>1 2 3 4 5</div>
-                {this.props.users.map(u => <div key={u.id}>
-                        <img src={u.photos.small
-                        != null ? u.photos.small : fotoDefault}
-                             alt={'photo'} />
-                        <div>
-                            {u.followed
-                                ? <button onClick={() => {
-                                    this.props.unfollow(u.id)
-                                }}>Unfollow</button>
-                                : <button onClick={() => {
-                                    this.props.follow(u.id)
-                                }}>Follow</button>
-
-                            }
-                        </div>
-                        <div>{u.name}</div>
-                        <div>{'u.location.country'}</div>
-                        <div>{'u.location.city'}</div>
-                    </div>
-                )}
-            </div>
-        );
-    }
-}
-
-export default Users;
