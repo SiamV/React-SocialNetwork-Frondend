@@ -1,11 +1,11 @@
 const ADD_MY_POST = 'ADD-MY-POST';
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
 
-export const addMyPostActionCreator = (text) => {
+export const addPost = (text) => {
     return {type: ADD_MY_POST, postMessage: text}
 }
 
-export const updateNewPostActionCreator = (text) => {
+export const onWritePost = (text) => {
     return {type: UPDATE_NEW_POST, newSymbol: text}
 }
 

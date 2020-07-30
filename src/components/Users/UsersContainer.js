@@ -1,12 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    followAC,
-    setCurrentPageAC,
-    setIsLoadingAC,
-    setTotalCountUsersAC,
-    setUsersAC,
-    unfollowAC
+    follow,
+    setCurrentPage,
+    setIsLoading,
+    setTotalCountUsers,
+    setUsers,
+    unfollow
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import * as axios from "axios";
@@ -67,29 +67,37 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setTotalCountUsers: (totalUsers) => {
-            dispatch(setTotalCountUsersAC(totalUsers))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setIsLoading: (isLoading) => {
-            dispatch(setIsLoadingAC(isLoading))
-        }
-    }
-}
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAJAX)
+const UsersContainer = connect(mapStateToProps,
+    {
+    follow,
+    unfollow,
+    setUsers,
+    setTotalCountUsers,
+    setCurrentPage,
+    setIsLoading})(UsersAJAX)
 
 export default UsersContainer;
+
+
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userId) => {
+//             dispatch(followAC(userId))
+//         },
+//         unfollow: (userId) => {
+//             dispatch(unfollowAC(userId))
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setTotalCountUsers: (totalUsers) => {
+//             dispatch(setTotalCountUsersAC(totalUsers))
+//         },
+//         setCurrentPage: (pageNumber) => {
+//             dispatch(setCurrentPageAC(pageNumber))
+//         },
+//         setIsLoading: (isLoading) => {
+//             dispatch(setIsLoadingAC(isLoading))
+//         }
+//     }
+// }

@@ -1,5 +1,5 @@
 import React from "react";
-import {addMyMessageActionCreator, updateNewMessageActionCreator} from "../../redux/messagesPageReducer";
+import {addMessage, onChangeMessage} from "../../redux/messagesPageReducer";
 import Messages from "./Messages";
 import {connect} from "react-redux";
 
@@ -11,17 +11,19 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addMessage: (text) => {
-            dispatch(addMyMessageActionCreator(text));
-        },
-        onChangeMessage: (text) => {
-           dispatch(updateNewMessageActionCreator(text));
-        }
-    }
-}
-
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps) (Messages);
+const MessagesContainer = connect(mapStateToProps, {
+    addMessage,
+    onChangeMessage}) (Messages);
 
 export default MessagesContainer;
+
+//const mapDispatchToProps = (dispatch) => {
+//     return {
+//         addMessage: (text) => {
+//             dispatch(addMyMessageActionCreator(text));
+//         },
+//         onChangeMessage: (text) => {
+//            dispatch(updateNewMessageActionCreator(text));
+//         }
+//     }
+// }

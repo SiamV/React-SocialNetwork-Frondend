@@ -77,28 +77,28 @@ const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SWITCH_LOADING = 'SWITCH_LOADING';
 
-export const followAC = (userId) => ({
+export const follow = (userId) => ({
     type: FOLLOW,
     userId: userId
 })
-export const unfollowAC = (userId) => ({
+export const unfollow = (userId) => ({
     type: UNFOLLOW,
     userId: userId
 })
-export const setUsersAC = (users) => ({
+export const setUsers = (users) => ({
     type: SET_USERS,
     users: users
 })
-export const setTotalCountUsersAC = (totalUsers) => ({
+export const setTotalCountUsers = (totalUsers) => ({
     type: SET_TOTAL_COUNT_USERS,
     totalUsers: totalUsers
 })
-export const setCurrentPageAC = (pageNumber) => ({
+export const setCurrentPage = (pageNumber) => ({
     type: SET_CURRENT_PAGE,
     pageNumber: pageNumber
 })
 
-export const setIsLoadingAC = (isLoading) => ({
+export const setIsLoading = (isLoading) => ({
     type: SWITCH_LOADING,
     isLoading: isLoading
 })
