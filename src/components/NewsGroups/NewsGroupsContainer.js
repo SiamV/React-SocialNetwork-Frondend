@@ -1,4 +1,3 @@
-import React from "react";
 import {addPostGroupCreator, updateNewLetterCreator} from "../../redux/newsGroupsPageReducer";
 import NewsGroups from "./NewsGroups";
 import {connect} from "react-redux";

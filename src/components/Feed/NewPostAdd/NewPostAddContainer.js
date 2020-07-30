@@ -1,4 +1,3 @@
-import React from "react";
 import {addPost, onWritePost} from "../../../redux/profilePageReducer";
 import NewPostAdd from "./NewPostAdd";
 import {connect} from "react-redux";

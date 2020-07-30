@@ -20,6 +20,7 @@ class UsersAJAX extends React.Component {
     componentDidMount() {
         //page - текущая страница, count - число пользователей на страницу
         this.props.setIsLoading(true);
+
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`)
             .then(response => {
                 this.props.setIsLoading(false);
@@ -101,3 +102,9 @@ export default UsersContainer;
 //         }
 //     }
 // }
+
+// axios.get(`https://apps.twinesocial.com/api/v1/campaign?id=louboutin`)
+//     .then(response => {
+//         console.log(response)
+//         }
+//     )
