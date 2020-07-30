@@ -1,6 +1,45 @@
+import React from "react";
 import {connect} from "react-redux";
 import {followAC, setCurrentPageAC, setTotalCountUsersAC, setUsersAC, unfollowAC} from "../../redux/usersReducer";
 import Users from "./Users";
+import * as axios from "axios";
+
+class UsersAJAX extends React.Component {
+    // constructor(props) {
+    //     super(props);
+    // }
+
+    componentDidMount() {
+        //page - текущая страница, count - число пользователей на страницу
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+                this.props.setTotalCountUsers(response.data.totalCount);
+                console.log(response);
+            })
+    }
+
+    //отправка get запроса при нажатии на цифры в span
+    onPageChange = (page) => {
+        this.props.setCurrentPage(page)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.countUsersPage}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+            })
+    }
+    render() {
+        return (
+            <Users totalCountUsers={this.props.totalCountUsers}
+                   countUsersPage={this.props.countUsersPage}
+                   currentPage={this.props.currentPage}
+                   users={this.props.users}
+                   unfollow={this.props.unfollow}
+                   follow={this.props.follow}
+                   onPageChange={this.onPageChange}
+            />
+        );
+    }
+}
 
 let mapStateToProps = (state) => {
     return {
@@ -31,6 +70,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAJAX)
 
 export default UsersContainer;
