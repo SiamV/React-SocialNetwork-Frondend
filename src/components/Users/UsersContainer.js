@@ -1,8 +1,16 @@
 import React from "react";
 import {connect} from "react-redux";
-import {followAC, setCurrentPageAC, setTotalCountUsersAC, setUsersAC, unfollowAC} from "../../redux/usersReducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setIsLoadingAC,
+    setTotalCountUsersAC,
+    setUsersAC,
+    unfollowAC
+} from "../../redux/usersReducer";
 import Users from "./Users";
 import * as axios from "axios";
+import Preloader from "../common/Preloader/Preloader";
 
 class UsersAJAX extends React.Component {
     // constructor(props) {
@@ -11,8 +19,10 @@ class UsersAJAX extends React.Component {
 
     componentDidMount() {
         //page - текущая страница, count - число пользователей на страницу
+        this.props.setIsLoading(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`)
             .then(response => {
+                this.props.setIsLoading(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCountUsers(response.data.totalCount);
                 console.log(response);
@@ -21,22 +31,28 @@ class UsersAJAX extends React.Component {
 
     //отправка get запроса при нажатии на цифры в span
     onPageChange = (page) => {
+        this.props.setIsLoading(true);
         this.props.setCurrentPage(page)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.countUsersPage}`)
             .then(response => {
+                this.props.setIsLoading(false);
                 this.props.setUsers(response.data.items);
             })
     }
+
     render() {
         return (
-            <Users totalCountUsers={this.props.totalCountUsers}
-                   countUsersPage={this.props.countUsersPage}
-                   currentPage={this.props.currentPage}
-                   users={this.props.users}
-                   unfollow={this.props.unfollow}
-                   follow={this.props.follow}
-                   onPageChange={this.onPageChange}
-            />
+            <>
+                {this.props.isLoading ? <Preloader /> :null}
+                <Users totalCountUsers={this.props.totalCountUsers}
+                       countUsersPage={this.props.countUsersPage}
+                       currentPage={this.props.currentPage}
+                       users={this.props.users}
+                       unfollow={this.props.unfollow}
+                       follow={this.props.follow}
+                       onPageChange={this.onPageChange}
+                />
+            </>
         );
     }
 }
@@ -46,7 +62,8 @@ let mapStateToProps = (state) => {
         users: state.usersPage.users,
         countUsersPage: state.usersPage.countUsersPage,
         totalCountUsers: state.usersPage.totalCountUsers,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isLoading: state.usersPage.isLoading
     }
 }
 
@@ -66,6 +83,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setCurrentPage: (pageNumber) => {
             dispatch(setCurrentPageAC(pageNumber))
+        },
+        setIsLoading: (isLoading) => {
+            dispatch(setIsLoadingAC(isLoading))
         }
     }
 }

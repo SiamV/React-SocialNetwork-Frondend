@@ -7,7 +7,8 @@ let stateDefault = {
     ],
     countUsersPage: 7,
     totalCountUsers: 0,
-    currentPage: 2
+    currentPage: 2,
+    isLoading: false
 }
 
 const usersReducer = (state = stateDefault, action) => {
@@ -47,7 +48,7 @@ const usersReducer = (state = stateDefault, action) => {
         case SET_TOTAL_COUNT_USERS: {
             let stateCopy = {
                 ...state,
-                totalCountUsers: action.totalUsers/50
+                totalCountUsers: action.totalUsers / 50
             }
             return stateCopy;
         }
@@ -55,6 +56,12 @@ const usersReducer = (state = stateDefault, action) => {
             return {
                 ...state,
                 currentPage: action.pageNumber
+            }
+        }
+        case SWITCH_LOADING: {
+            return {
+                ...state,
+                isLoading: action.isLoading
             }
         }
         default:
@@ -67,7 +74,8 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
-const SET_CURRENT_PAGE ='SET_CURRENT_PAGE';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SWITCH_LOADING = 'SWITCH_LOADING';
 
 export const followAC = (userId) => ({
     type: FOLLOW,
@@ -85,9 +93,14 @@ export const setTotalCountUsersAC = (totalUsers) => ({
     type: SET_TOTAL_COUNT_USERS,
     totalUsers: totalUsers
 })
-export const setCurrentPageAC =(pageNumber) => ({
+export const setCurrentPageAC = (pageNumber) => ({
     type: SET_CURRENT_PAGE,
     pageNumber: pageNumber
+})
+
+export const setIsLoadingAC = (isLoading) => ({
+    type: SWITCH_LOADING,
+    isLoading: isLoading
 })
 
 export default usersReducer;
