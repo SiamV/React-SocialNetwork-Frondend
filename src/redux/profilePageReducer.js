@@ -1,6 +1,7 @@
 const ADD_MY_POST = 'ADD-MY-POST';
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const IS_LOADING_USER = 'IS_LOADING_USER'
 
 export const addPost = (text) => {
     return {type: ADD_MY_POST, postMessage: text}
@@ -12,6 +13,10 @@ export const onWritePost = (text) => {
 
 export const setUserProfile = (profile) => {
     return {type:SET_USER_PROFILE, profile: profile}
+}
+
+export const isLoadingUser = (isLoading) => {
+    return {type:IS_LOADING_USER, isLoading: isLoading}
 }
 
 //state default
@@ -37,7 +42,8 @@ let initialState = {
                 ' компоненты в React-приложениях.', like: 120
         }],
     newPostAdd: '',
-    profile: null
+    profile: null,
+    isLoading: false
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -65,6 +71,12 @@ const profilePageReducer = (state = initialState, action) => {
             return  {
                 ...state,
                 profile: action.profile
+            }
+        }
+        case IS_LOADING_USER: {
+            return  {
+                ...state,
+                isLoading: action.isLoading
             }
         }
         default:
