@@ -1,5 +1,6 @@
 const ADD_MY_POST = 'ADD-MY-POST';
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export const addPost = (text) => {
     return {type: ADD_MY_POST, postMessage: text}
@@ -7,6 +8,10 @@ export const addPost = (text) => {
 
 export const onWritePost = (text) => {
     return {type: UPDATE_NEW_POST, newSymbol: text}
+}
+
+export const setUserProfile = (profile) => {
+    return {type:SET_USER_PROFILE, profile: profile}
 }
 
 //state default
@@ -31,7 +36,8 @@ let initialState = {
                 ' Неважно, пишем ли мы кнопку, форму или целый экран: все они, как правило, представляют собой' +
                 ' компоненты в React-приложениях.', like: 120
         }],
-    newPostAdd: ''
+    newPostAdd: '',
+    profile: null
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -54,6 +60,12 @@ const profilePageReducer = (state = initialState, action) => {
                 ...state,
                 newPostAdd: action.newSymbol
             };
+        }
+        case SET_USER_PROFILE: {
+            return  {
+                ...state,
+                profile: action.profile
+            }
         }
         default:
             return state;

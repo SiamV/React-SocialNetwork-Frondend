@@ -3,7 +3,6 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Account from "./components/Account/Account";
-import Profile from "./components/Feed/Profile";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route} from "react-router-dom";
 import NewsFriends from "./components/Newsfriends/NewsFriends";
@@ -11,6 +10,7 @@ import NewsGroupsContainer from "./components/NewsGroups/NewsGroupsContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import FriendContainer from "./components/Friends/FriendContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Feed/ProfileContainer";
 
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
                 <div className={'site-wrapper-friends'}><FriendContainer /></div>
                 <div className={'site-wrapper-feed'}>
                     <Route path={'/profile'} render={() =>
-                        <Profile />
+                        <ProfileContainer />
                     } />
                     <Route path={'/messages'} render={() =>
                         <MessagesContainer />

@@ -6,7 +6,6 @@ const NewPostAdd = (props) => {
     let onClickAddPost = () => {
         let text = newPostElement.current.value;
         props.addPost(text);
-        debugger;
     }
 
     let newPostElement = React.createRef();
