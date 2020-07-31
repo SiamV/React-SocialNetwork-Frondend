@@ -22,7 +22,7 @@ const App = () => {
                 <div className={'site-wrapper-account'}><Account /></div>
                 <div className={'site-wrapper-friends'}><FriendContainer /></div>
                 <div className={'site-wrapper-feed'}>
-                    <Route path={'/profile'} render={() =>
+                    <Route path={'/profile/:userId?'} render={() =>
                         <ProfileContainer />
                     } />
                     <Route path={'/messages'} render={() =>
