@@ -2,10 +2,13 @@ import React from "react";
 import classes from './Account.module.css'
 import {NavLink} from "react-router-dom";
 
-const Account = () => {
+const Account = (props) => {
     return (
         <div className={classes.myProfile}>
-            <NavLink to={'/profile'}>My Profile</NavLink>
+            {props.isLogin ? <div className={classes.profileBlock}><NavLink to={'/profile'}>{props.login} / My Profile</NavLink></div>
+                : <div className={classes.loginBlock}><NavLink to={'/login'}>Login</NavLink></div>
+            }
+
         </div>
     );
 }

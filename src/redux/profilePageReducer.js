@@ -84,5 +84,4 @@ const profilePageReducer = (state = initialState, action) => {
     }
 }
 
-
 export default profilePageReducer;

@@ -1,5 +1,5 @@
 .myProfile {
-
+    padding: 5px;
 }
 
 .myProfile a {
@@ -10,4 +10,14 @@
 
 .myProfile a:hover {
     color: dodgerblue;
+}
+
+.myProfile .loginBlock {
+    float: left;
+    margin-left: 30%;
+}
+
+.myProfile .profileBlock {
+    float: right;
+    margin-right: 30%;
 }

@@ -4,6 +4,7 @@ import messagePageReducer from "./messagesPageReducer";
 import friendsPageReducer from "./friendsPageReducer"
 import newsGroupsPageReducer from "./newsGroupsPageReducer";
 import usersReducer from "./usersReducer";
+import loginReducer from "./loginReducer";
 
 
 let reducersStack = combineReducers({
@@ -11,7 +12,8 @@ let reducersStack = combineReducers({
     messagesPage: messagePageReducer,
     friendsPage: friendsPageReducer,
     newsGroupsPage: newsGroupsPageReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    login: loginReducer
 })
 
 let store = createStore(reducersStack);

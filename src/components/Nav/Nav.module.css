@@ -1,8 +1,13 @@
+.freeNav {
+    padding: 5px;
+}
+
 .freeNav a {
-    margin: 10%;
     color: blue;
     text-decoration: none;
-    vertical-align: middle;
+    display: inline-block;
+    width: 25%;
+
 }
 
 .freeNav a:hover {
