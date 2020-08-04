@@ -9,8 +9,8 @@ import {
     unfollow
 } from "../../redux/usersReducer";
 import Users from "./Users";
-import * as axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
+import {getUsers} from "../../api/api";
 
 class UsersAJAX extends React.Component {
     // constructor(props) {
@@ -21,26 +21,31 @@ class UsersAJAX extends React.Component {
         //page - текущая страница, count - число пользователей на страницу
         this.props.setIsLoading(true);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`,
-            {withCredentials: true}
-        )
-            .then(response => {
+        getUsers(this.props.currentPage, this.props.countUsersPage)
+            .then(data => {
                 this.props.setIsLoading(false);
-                this.props.setUsers(response.data.items);
-                this.props.setTotalCountUsers(response.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalCountUsers(data.totalCount);
             })
+
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`,
+        //     {withCredentials: true}
+        // )
+        //     .then(response => {
+        //         this.props.setIsLoading(false);
+        //         this.props.setUsers(response.data.items);
+        //         this.props.setTotalCountUsers(response.data.totalCount);
+        //     })
     }
 
     //отправка get запроса при нажатии на цифры в span
     onPageChange = (page) => {
         this.props.setIsLoading(true);
         this.props.setCurrentPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.countUsersPage}`,
-            {withCredentials: true}
-        )
-            .then(response => {
+        getUsers(page, this.props.countUsersPage)
+            .then(data => {
                 this.props.setIsLoading(false);
-                this.props.setUsers(response.data.items);
+                this.props.setUsers(data.items);
             })
     }
 
@@ -82,33 +87,3 @@ const UsersContainer = connect(mapStateToProps,
     })(UsersAJAX)
 
 export default UsersContainer;
-
-
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setTotalCountUsers: (totalUsers) => {
-//             dispatch(setTotalCountUsersAC(totalUsers))
-//         },
-//         setCurrentPage: (pageNumber) => {
-//             dispatch(setCurrentPageAC(pageNumber))
-//         },
-//         setIsLoading: (isLoading) => {
-//             dispatch(setIsLoadingAC(isLoading))
-//         }
-//     }
-// }
-
-// axios.get(`https://apps.twinesocial.com/api/v1/campaign?id=louboutin`)
-//     .then(response => {
-//         console.log(response)
-//         }
-//     )
