@@ -4,6 +4,7 @@ import * as axios from "axios";
 import {connect} from "react-redux";
 import {isLoadingUser, setUserProfile} from "../../redux/profilePageReducer";
 import {withRouter} from "react-router-dom";
+import {getUserProfile} from "../../api/api";
 
 class ProfileAJAX extends React.Component {
     componentDidMount() {
@@ -12,10 +13,11 @@ class ProfileAJAX extends React.Component {
             userId = 2;
         }
             this.props.isLoadingUser(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => {
+        getUserProfile(userId)
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+            .then(data => {
                 this.props.isLoadingUser(false);
-                this.props.setUserProfile(response.data);
+                this.props.setUserProfile(data);
                 //общие props: state(profile),dispatch(setUserProfile) + withRouter(history,location,match)
             })
     }
