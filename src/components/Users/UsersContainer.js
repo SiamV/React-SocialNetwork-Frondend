@@ -21,12 +21,13 @@ class UsersAJAX extends React.Component {
         //page - текущая страница, count - число пользователей на страницу
         this.props.setIsLoading(true);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`,
+            {withCredentials: true}
+        )
             .then(response => {
                 this.props.setIsLoading(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCountUsers(response.data.totalCount);
-                console.log(response);
             })
     }
 
@@ -34,7 +35,9 @@ class UsersAJAX extends React.Component {
     onPageChange = (page) => {
         this.props.setIsLoading(true);
         this.props.setCurrentPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.countUsersPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.countUsersPage}`,
+            {withCredentials: true}
+        )
             .then(response => {
                 this.props.setIsLoading(false);
                 this.props.setUsers(response.data.items);
@@ -44,7 +47,7 @@ class UsersAJAX extends React.Component {
     render() {
         return (
             <>
-                {this.props.isLoading ? <Preloader /> :null}
+                {this.props.isLoading ? <Preloader /> : null}
                 <Users totalCountUsers={this.props.totalCountUsers}
                        countUsersPage={this.props.countUsersPage}
                        currentPage={this.props.currentPage}
@@ -70,12 +73,13 @@ let mapStateToProps = (state) => {
 
 const UsersContainer = connect(mapStateToProps,
     {
-    follow,
-    unfollow,
-    setUsers,
-    setTotalCountUsers,
-    setCurrentPage,
-    setIsLoading})(UsersAJAX)
+        follow,
+        unfollow,
+        setUsers,
+        setTotalCountUsers,
+        setCurrentPage,
+        setIsLoading
+    })(UsersAJAX)
 
 export default UsersContainer;
 

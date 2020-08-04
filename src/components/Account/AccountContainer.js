@@ -11,7 +11,6 @@ class AccountContainer extends React.Component {
                 if (response.data.resultCode === 0){
                     this.props.setMyData(response.data.data.id, response.data.data.login, response.data.data.email);
                 }
-                console.log(response)
             })
     }
 

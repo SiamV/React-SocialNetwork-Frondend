@@ -17,7 +17,6 @@ class ProfileAJAX extends React.Component {
                 this.props.isLoadingUser(false);
                 this.props.setUserProfile(response.data);
                 //общие props: state(profile),dispatch(setUserProfile) + withRouter(history,location,match)
-                console.log(this.props);
             })
     }
     render() {
