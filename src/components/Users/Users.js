@@ -28,34 +28,23 @@ let Users = (props) => {
                     </NavLink>
                     <div>
                         {u.followed
-                            ? <button onClick={() => {
+                            ? <button disabled={props.isButtonDisabling} onClick={() => {
+                                props.setButtonDisabling(true);
                                 unfollowUser(u.id)
                                     .then(data => {
                                         if(data.resultCode === 0) {
                                             props.unfollow(u.id)
+                                            props.setButtonDisabling(false);
                                         }
                                     })
-                                // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                                //     {
-                                //         withCredentials: true,
-                                //         headers: {"API-KEY": "f5c4bbba-674e-4a1d-8c4e-f97b4c67964e"}
-                                //     })
-                                //     .then(response => {
-                                //         if(response.data.resulCode === 0) {
-                                //             props.unfollow(u.id)
-                                //         }
-                                //     })
                             }}>Unfollow</button>
-                            : <button onClick={() => {
+                            : <button disabled={props.isButtonDisabling} onClick={() => {
+                                props.setButtonDisabling(true);
                                 followUser(u.id)
-                                // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                                //     {
-                                //         withCredentials: true,
-                                //         headers: {"API-KEY": "f5c4bbba-674e-4a1d-8c4e-f97b4c67964e"}
-                                //     })
                                     .then(data => {
                                         if (data.resultCode === 0) {
                                             props.follow(u.id);
+                                            props.setButtonDisabling(false);
                                         }
                                     })
 

@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    follow,
+    follow, setButtonDisabling,
     setCurrentPage,
     setIsLoading,
     setTotalCountUsers,
@@ -60,6 +60,8 @@ class UsersAJAX extends React.Component {
                        unfollow={this.props.unfollow}
                        follow={this.props.follow}
                        onPageChange={this.onPageChange}
+                       setButtonDisabling={this.props.setButtonDisabling}
+                       isButtonDisabling={this.props.isButtonDisabling}
                 />
             </>
         );
@@ -72,7 +74,8 @@ let mapStateToProps = (state) => {
         countUsersPage: state.usersPage.countUsersPage,
         totalCountUsers: state.usersPage.totalCountUsers,
         currentPage: state.usersPage.currentPage,
-        isLoading: state.usersPage.isLoading
+        isLoading: state.usersPage.isLoading,
+        isButtonDisabling: state.usersPage.isButtonDisabling
     }
 }
 
@@ -83,7 +86,8 @@ const UsersContainer = connect(mapStateToProps,
         setUsers,
         setTotalCountUsers,
         setCurrentPage,
-        setIsLoading
+        setIsLoading,
+        setButtonDisabling
     })(UsersAJAX)
 
 export default UsersContainer;

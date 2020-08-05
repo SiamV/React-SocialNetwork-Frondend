@@ -8,7 +8,8 @@ let stateDefault = {
     countUsersPage: 7,
     totalCountUsers: 0,
     currentPage: 2,
-    isLoading: false
+    isLoading: false,
+    isButtonDisabling: false
 }
 
 const usersReducer = (state = stateDefault, action) => {
@@ -64,6 +65,12 @@ const usersReducer = (state = stateDefault, action) => {
                 isLoading: action.isLoading
             }
         }
+        case IS_BUTTON_DISAIBLING: {
+            return  {
+                ...state,
+                isButtonDisabling: action.isDisabling
+            }
+        }
         default:
             return state;
     }
@@ -76,6 +83,7 @@ const SET_USERS = 'SET_USERS';
 const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SWITCH_LOADING = 'SWITCH_LOADING';
+const IS_BUTTON_DISAIBLING = 'IS_BUTTON_DISAIBLING';
 
 export const follow = (userId) => ({
     type: FOLLOW,
@@ -102,5 +110,10 @@ export const setIsLoading = (isLoading) => ({
     type: SWITCH_LOADING,
     isLoading: isLoading
 })
+
+export const setButtonDisabling = (isDisabling) => (
+    {type: IS_BUTTON_DISAIBLING,
+    isDisabling: isDisabling}
+)
 
 export default usersReducer;
