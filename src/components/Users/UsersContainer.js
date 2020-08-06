@@ -10,6 +10,7 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {Redirect} from "react-router-dom";
 
 class UsersAJAX extends React.Component {
     // constructor(props) {
@@ -25,16 +26,10 @@ class UsersAJAX extends React.Component {
     onPageChange = (page) => {
         //dispatch thunk
         this.props.getUsersThunk(page, this.props.countUsersPage)
-        // this.props.setIsLoading(true);
-        // this.props.setCurrentPage(page)
-        // getUsers(page, this.props.countUsersPage)
-        //     .then(data => {
-        //         this.props.setIsLoading(false);
-        //         this.props.setUsers(data.items);
-        //     })
     }
 
     render() {
+        if(!this.props.isLogin) {return <Redirect to={'/login'} />}
         return (
             <>
                 {this.props.isLoading ? <Preloader /> : null}
@@ -59,7 +54,8 @@ let mapStateToProps = (state) => {
         totalCountUsers: state.usersPage.totalCountUsers,
         currentPage: state.usersPage.currentPage,
         isLoading: state.usersPage.isLoading,
-        isButtonDisabling: state.usersPage.isButtonDisabling
+        isButtonDisabling: state.usersPage.isButtonDisabling,
+        isLogin: state.login.isLogin
     }
 }
 

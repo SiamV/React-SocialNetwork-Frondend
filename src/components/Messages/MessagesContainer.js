@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
     return {
         userItemData: state.messagesPage.userItemData,
         messagesData: state.messagesPage.messagesData,
-        updateMessage: state.messagesPage.updateMessage
+        updateMessage: state.messagesPage.updateMessage,
+        isLogin: state.login.isLogin
     }
 }
 
@@ -15,14 +16,3 @@ const MessagesContainer = connect(mapStateToProps, {
     onChangeMessage}) (Messages);
 
 export default MessagesContainer;
-
-//const mapDispatchToProps = (dispatch) => {
-//     return {
-//         addMessage: (text) => {
-//             dispatch(addMyMessageActionCreator(text));
-//         },
-//         onChangeMessage: (text) => {
-//            dispatch(updateNewMessageActionCreator(text));
-//         }
-//     }
-// }

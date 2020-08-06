@@ -11,6 +11,8 @@ import FriendContainer from "./components/Friends/FriendContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Feed/ProfileContainer";
 import AccountContainer from "./components/Account/AccountContainer";
+import Login from "./components/Login/Login";
+import NewsFriendsContainer from "./components/Newsfriends/NewsFriendsContainer";
 
 
 const App = () => {
@@ -22,19 +24,12 @@ const App = () => {
                 <div className={'site-wrapper-account'}><AccountContainer /></div>
                 <div className={'site-wrapper-friends'}><FriendContainer /></div>
                 <div className={'site-wrapper-feed'}>
-                    <Route path={'/profile/:userId?'} render={() =>
-                        <ProfileContainer />
-                    } />
-                    <Route path={'/messages'} render={() =>
-                        <MessagesContainer />
-                    } />
-                    <Route path={'/groups'} render={() =>
-                        <NewsGroupsContainer />
-                    } />
-                    <Route path={'/news'} component={NewsFriends} />
-                    <Route path={'/users'} render={() =>
-                        <UsersContainer />
-                    } />
+                    <Route path={'/news'} component={NewsFriendsContainer} />
+                    <Route path={'/groups'} render={() => <NewsGroupsContainer />} />
+                    <Route path={'/messages'} render={() => <MessagesContainer />} />
+                    <Route path={'/profile/:userId?'} render={() => <ProfileContainer />} />
+                    <Route path={'/login'} render={() => <Login />} />
+                    <Route path={'/users'} render={() => <UsersContainer />} />
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>
             </div>

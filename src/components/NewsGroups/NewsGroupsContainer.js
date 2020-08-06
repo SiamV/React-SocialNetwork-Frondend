@@ -5,7 +5,8 @@ import {connect} from "react-redux";
 const mapStateToProps = (state) => {
     return {
         postsGroups: state.newsGroupsPage.postsGroups,
-        messageData: state.newsGroupsPage.newPostGroup
+        messageData: state.newsGroupsPage.newPostGroup,
+        isLogin: state.login.isLogin
     }
 }
 
@@ -20,7 +21,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-//component?
 const NewsGroupsContainer = connect(mapStateToProps, mapDispatchToProps) (NewsGroups);
 
 export default NewsGroupsContainer;
