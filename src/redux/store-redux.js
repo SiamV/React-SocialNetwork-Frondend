@@ -5,7 +5,7 @@ import friendsPageReducer from "./friendsPageReducer"
 import newsGroupsPageReducer from "./newsGroupsPageReducer";
 import usersReducer from "./usersReducer";
 import loginReducer from "./loginReducer";
-import thunk from "redux-thunk";
+import thunkMiddleware from "redux-thunk";
 
 
 let reducersStack = combineReducers({
@@ -17,6 +17,6 @@ let reducersStack = combineReducers({
     login: loginReducer
 })
 
-let store = createStore(reducersStack, applyMiddleware(thunk));
+let store = createStore(reducersStack, applyMiddleware(thunkMiddleware));
 
 export default store;

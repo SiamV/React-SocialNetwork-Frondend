@@ -1,3 +1,6 @@
+//state
+import {getUsers} from "../api/api";
+
 let stateDefault = {
     users: [
         //создали часть объектов через dispatch(setUsersAC(users)) и перенесли пока в сам файл Users.js
@@ -66,7 +69,7 @@ const usersReducer = (state = stateDefault, action) => {
             }
         }
         case IS_BUTTON_DISAIBLING: {
-            return  {
+            return {
                 ...state,
                 isButtonDisabling: action.isDisabling
             }
@@ -77,6 +80,8 @@ const usersReducer = (state = stateDefault, action) => {
 
 }
 
+//constants
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -84,6 +89,8 @@ const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SWITCH_LOADING = 'SWITCH_LOADING';
 const IS_BUTTON_DISAIBLING = 'IS_BUTTON_DISAIBLING';
+
+//ActionCreators
 
 export const follow = (userId) => ({
     type: FOLLOW,
@@ -112,8 +119,28 @@ export const setIsLoading = (isLoading) => ({
 })
 
 export const setButtonDisabling = (isDisabling) => (
-    {type: IS_BUTTON_DISAIBLING,
-    isDisabling: isDisabling}
+    {
+        type: IS_BUTTON_DISAIBLING,
+        isDisabling: isDisabling
+    }
 )
+
+//ThunksCreators
+
+export const getUsersThunk = (currentPage, countUsersPage) => {
+    return (
+        (dispatch) => {
+            //page - текущая страница, count - число пользователей на страницу
+            dispatch(setIsLoading(true));
+            dispatch(setCurrentPage(currentPage)); //только для onPageChange = (page) чтобы менялось подсветка
+            getUsers(currentPage, countUsersPage)
+                .then(data => {
+                    dispatch(setIsLoading(false));
+                    dispatch(setUsers(data.items));
+                    dispatch(setTotalCountUsers(data.totalCount));
+                })
+        }
+    )
+}
 
 export default usersReducer;

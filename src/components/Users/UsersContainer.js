@@ -1,16 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
-import {
-    follow, setButtonDisabling,
-    setCurrentPage,
-    setIsLoading,
-    setTotalCountUsers,
-    setUsers,
-    unfollow
-} from "../../redux/usersReducer";
+import {follow, unfollow, getUsersThunk, setButtonDisabling} from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import {getUsers} from "../../api/api";
 
 class UsersAJAX extends React.Component {
     // constructor(props) {
@@ -18,35 +10,21 @@ class UsersAJAX extends React.Component {
     // }
 
     componentDidMount() {
-        //page - текущая страница, count - число пользователей на страницу
-        this.props.setIsLoading(true);
-
-        getUsers(this.props.currentPage, this.props.countUsersPage)
-            .then(data => {
-                this.props.setIsLoading(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalCountUsers(data.totalCount);
-            })
-
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.countUsersPage}`,
-        //     {withCredentials: true}
-        // )
-        //     .then(response => {
-        //         this.props.setIsLoading(false);
-        //         this.props.setUsers(response.data.items);
-        //         this.props.setTotalCountUsers(response.data.totalCount);
-        //     })
+        //dispatch thunk
+        this.props.getUsersThunk(this.props.currentPage, this.props.countUsersPage);
     }
 
     //отправка get запроса при нажатии на цифры в span
     onPageChange = (page) => {
-        this.props.setIsLoading(true);
-        this.props.setCurrentPage(page)
-        getUsers(page, this.props.countUsersPage)
-            .then(data => {
-                this.props.setIsLoading(false);
-                this.props.setUsers(data.items);
-            })
+        //dispatch thunk
+        this.props.getUsersThunk(page, this.props.countUsersPage)
+        // this.props.setIsLoading(true);
+        // this.props.setCurrentPage(page)
+        // getUsers(page, this.props.countUsersPage)
+        //     .then(data => {
+        //         this.props.setIsLoading(false);
+        //         this.props.setUsers(data.items);
+        //     })
     }
 
     render() {
@@ -83,11 +61,8 @@ const UsersContainer = connect(mapStateToProps,
     {
         follow,
         unfollow,
-        setUsers,
-        setTotalCountUsers,
-        setCurrentPage,
-        setIsLoading,
-        setButtonDisabling
+        setButtonDisabling,
+        getUsersThunk
     })(UsersAJAX)
 
 export default UsersContainer;
