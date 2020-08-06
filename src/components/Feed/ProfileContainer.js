@@ -1,24 +1,18 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {isLoadingUser, setUserProfile} from "../../redux/profilePageReducer";
+import {getUserProfileThunkCreator} from "../../redux/profilePageReducer";
 import {withRouter} from "react-router-dom";
-import {getUserProfile} from "../../api/api";
 
 class ProfileAJAX extends React.Component {
     componentDidMount() {
+        //данные о userId из withRouter
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = 2;
         }
-            this.props.isLoadingUser(true);
-        getUserProfile(userId)
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(data => {
-                this.props.isLoadingUser(false);
-                this.props.setUserProfile(data);
-                //общие props: state(profile),dispatch(setUserProfile) + withRouter(history,location,match)
-            })
+        //use thunk
+        this.props.getUserProfileThunkCreator(userId)
     }
     render() {
         return (
@@ -34,6 +28,7 @@ let mapStateToProps = (state) => {
     }
 }
 
+//общие props: state(profile),dispatch(setUserProfile) + withRouter(history,location,match)
 let UrlProfileContainer = withRouter(ProfileAJAX);
-const ProfileContainer = connect(mapStateToProps, {setUserProfile,isLoadingUser})(UrlProfileContainer);
+const ProfileContainer = connect(mapStateToProps, {getUserProfileThunkCreator})(UrlProfileContainer);
 export default ProfileContainer;

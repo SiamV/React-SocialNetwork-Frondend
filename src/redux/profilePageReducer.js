@@ -1,25 +1,6 @@
-const ADD_MY_POST = 'ADD-MY-POST';
-const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const IS_LOADING_USER = 'IS_LOADING_USER'
-
-export const addPost = (text) => {
-    return {type: ADD_MY_POST, postMessage: text}
-}
-
-export const onWritePost = (text) => {
-    return {type: UPDATE_NEW_POST, newSymbol: text}
-}
-
-export const setUserProfile = (profile) => {
-    return {type:SET_USER_PROFILE, profile: profile}
-}
-
-export const isLoadingUser = (isLoading) => {
-    return {type:IS_LOADING_USER, isLoading: isLoading}
-}
-
 //state default
+import {getUserProfile} from "../api/api";
+
 let initialState = {
     myPostsData: [{
         id: 1, post: 'Назовем эту рубрику «Магия CSS». Думаю, это точно описывает то, о чем я буду' +
@@ -82,6 +63,41 @@ const profilePageReducer = (state = initialState, action) => {
         default:
             return state;
     }
+}
+
+const ADD_MY_POST = 'ADD-MY-POST';
+const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const IS_LOADING_USER = 'IS_LOADING_USER'
+
+export const addPost = (text) => {
+    return {type: ADD_MY_POST, postMessage: text}
+}
+
+export const onWritePost = (text) => {
+    return {type: UPDATE_NEW_POST, newSymbol: text}
+}
+
+export const setUserProfile = (profile) => {
+    return {type:SET_USER_PROFILE, profile: profile}
+}
+
+export const isLoadingUser = (isLoading) => {
+    return {type:IS_LOADING_USER, isLoading: isLoading}
+}
+
+export const getUserProfileThunkCreator = (userId) => {
+    return(
+        (dispatch) => {
+            dispatch(isLoadingUser(true));
+            getUserProfile(userId)
+                .then(data => {
+                    dispatch(isLoadingUser(false));
+                    dispatch(setUserProfile(data));
+
+                })
+        }
+    )
 }
 
 export default profilePageReducer;
