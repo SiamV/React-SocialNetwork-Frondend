@@ -1,5 +1,5 @@
 //state
-import {getUsers} from "../api/api";
+import {followUser, getUsers, unfollowUser} from "../api/api";
 
 let stateDefault = {
     users: [
@@ -138,6 +138,36 @@ export const getUsersThunk = (currentPage, countUsersPage) => {
                     dispatch(setIsLoading(false));
                     dispatch(setUsers(data.items));
                     dispatch(setTotalCountUsers(data.totalCount));
+                })
+        }
+    )
+}
+
+export const unfollowThunkCreator = (userId) => {
+    return (
+        (dispatch) => {
+            dispatch(setButtonDisabling(true));
+            unfollowUser(userId)
+                .then(data => {
+                    if(data.resultCode === 0) {
+                        dispatch(unfollow(userId))
+                        dispatch(setButtonDisabling(false));
+                    }
+                })
+        }
+    )
+}
+
+export const followThunkCreator = (userId) => {
+    return (
+        (dispatch) => {
+            dispatch(setButtonDisabling(true));
+            followUser(userId)
+                .then(data => {
+                    if (data.resultCode === 0) {
+                        dispatch(follow(userId));
+                        dispatch(setButtonDisabling(false));
+                    }
                 })
         }
     )

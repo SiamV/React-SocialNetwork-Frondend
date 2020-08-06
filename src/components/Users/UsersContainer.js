@@ -1,6 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
-import {follow, unfollow, getUsersThunk, setButtonDisabling} from "../../redux/usersReducer";
+import {
+    follow,
+    unfollow,
+    getUsersThunk,
+    setButtonDisabling,
+    unfollowThunkCreator,
+    followThunkCreator
+} from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 
@@ -35,11 +42,10 @@ class UsersAJAX extends React.Component {
                        countUsersPage={this.props.countUsersPage}
                        currentPage={this.props.currentPage}
                        users={this.props.users}
-                       unfollow={this.props.unfollow}
-                       follow={this.props.follow}
                        onPageChange={this.onPageChange}
-                       setButtonDisabling={this.props.setButtonDisabling}
                        isButtonDisabling={this.props.isButtonDisabling}
+                       unfollowThunkCreator={this.props.unfollowThunkCreator}
+                       followThunkCreator={this.props.followThunkCreator}
                 />
             </>
         );
@@ -62,7 +68,9 @@ const UsersContainer = connect(mapStateToProps,
         follow,
         unfollow,
         setButtonDisabling,
-        getUsersThunk
+        getUsersThunk,
+        unfollowThunkCreator,
+        followThunkCreator
     })(UsersAJAX)
 
 export default UsersContainer;
