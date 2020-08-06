@@ -28,6 +28,7 @@ let Users = (props) => {
                     <div>
                         {u.followed
                             ? <button disabled={props.isButtonDisabling} onClick={() => {
+                                //use thunk
                                 props.unfollowThunkCreator(u.id)
                                 // props.setButtonDisabling(true);
                                 // unfollowUser(u.id)
