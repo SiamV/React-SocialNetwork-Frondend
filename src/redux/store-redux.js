@@ -1,10 +1,11 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import profilePageReducer from "./profilePageReducer";
 import messagePageReducer from "./messagesPageReducer";
 import friendsPageReducer from "./friendsPageReducer"
 import newsGroupsPageReducer from "./newsGroupsPageReducer";
 import usersReducer from "./usersReducer";
 import loginReducer from "./loginReducer";
+import thunk from "redux-thunk";
 
 
 let reducersStack = combineReducers({
@@ -16,6 +17,6 @@ let reducersStack = combineReducers({
     login: loginReducer
 })
 
-let store = createStore(reducersStack);
+let store = createStore(reducersStack, applyMiddleware(thunk));
 
 export default store;
