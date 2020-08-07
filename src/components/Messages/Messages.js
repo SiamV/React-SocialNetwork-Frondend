@@ -2,12 +2,8 @@ import React from "react";
 import classes from './Messages.module.css'
 import UsersItem from "./UsersItem/UsersItem";
 import MessagesItem from "./MessagesItem/MessagesItem";
-import {Redirect} from "react-router-dom";
 
 const Messages = (props) => {
-    if(!props.isLogin) {
-        return <Redirect to={'/login'} />
-    }
 
     //add textarea y addMessage logic
     let userElements = props.userItemData.map(n => (

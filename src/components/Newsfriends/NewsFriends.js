@@ -1,6 +1,5 @@
 import React from "react";
 import classes from './Newsfriends.module.css'
-import {withLoginRedirect} from "../HOC/withLoginRedirect";
 
 const NewsFriends = (props) => {
     return(
@@ -9,6 +8,5 @@ const NewsFriends = (props) => {
         </div>
     )
 }
-
-export default withLoginRedirect(NewsFriends);
+export default NewsFriends;
 

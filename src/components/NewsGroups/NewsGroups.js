@@ -1,10 +1,8 @@
 import React from "react";
 import classes from './NewsGroups.module.css';
 import NewsGroupsPosts from "./NewsGroupsItem/NewsGroupsPosts";
-import {Redirect} from "react-router-dom";
 
 const NewsGroups = (props) => {
-    if(!props.isLogin) {return <Redirect to={'/login'} />}
 
     let onClickAddPostGroup = () => {
         props.addPost();

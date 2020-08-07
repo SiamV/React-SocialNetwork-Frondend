@@ -1,6 +1,8 @@
 import {addPostGroupCreator, updateNewLetterCreator} from "../../redux/newsGroupsPageReducer";
 import NewsGroups from "./NewsGroups";
 import {connect} from "react-redux";
+import {withLoginRedirect} from "../HOC/withLoginRedirect";
+import NewsFriends from "../Newsfriends/NewsFriends";
 
 const mapStateToProps = (state) => {
     return {
@@ -21,6 +23,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const NewsGroupsContainer = connect(mapStateToProps, mapDispatchToProps) (NewsGroups);
-
+const LoginForm = withLoginRedirect(NewsGroups);
+const NewsGroupsContainer = connect(mapStateToProps, mapDispatchToProps) (LoginForm);
 export default NewsGroupsContainer;

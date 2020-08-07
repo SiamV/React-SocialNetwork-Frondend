@@ -11,6 +11,7 @@ import {
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {Redirect} from "react-router-dom";
+import {withLoginRedirect} from "../HOC/withLoginRedirect";
 
 class UsersAJAX extends React.Component {
     // constructor(props) {
@@ -29,7 +30,6 @@ class UsersAJAX extends React.Component {
     }
 
     render() {
-        if(!this.props.isLogin) {return <Redirect to={'/login'} />}
         return (
             <>
                 {this.props.isLoading ? <Preloader /> : null}
@@ -59,6 +59,7 @@ let mapStateToProps = (state) => {
     }
 }
 
+const LoginForm = withLoginRedirect(UsersAJAX);
 const UsersContainer = connect(mapStateToProps,
     {
         follow,
@@ -67,6 +68,5 @@ const UsersContainer = connect(mapStateToProps,
         getUsersThunk,
         unfollowThunkCreator,
         followThunkCreator
-    })(UsersAJAX)
-
+    })(LoginForm)
 export default UsersContainer;
