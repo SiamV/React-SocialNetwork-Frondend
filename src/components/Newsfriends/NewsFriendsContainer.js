@@ -1,6 +1,7 @@
 import NewsFriends from "./NewsFriends";
 import {connect} from "react-redux";
 import {withLoginRedirect} from "../HOC/withLoginRedirect";
+import {compose} from "redux";
 
 const mapStateToProps = (state) => {
     return(
@@ -10,6 +11,11 @@ const mapStateToProps = (state) => {
     )
 }
 
-const LoginForm = withLoginRedirect(NewsFriends);
-const NewsFriendsContainer = connect (mapStateToProps,{}) (LoginForm)
+const NewsFriendsContainer = compose(
+    connect (mapStateToProps,{}),
+    withLoginRedirect
+) (NewsFriends);
+
+// const LoginForm = withLoginRedirect(NewsFriends);
+// const NewsFriendsContainer = connect (mapStateToProps,{}) (LoginForm)
 export default NewsFriendsContainer;
