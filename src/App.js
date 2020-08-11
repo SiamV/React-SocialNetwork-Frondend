@@ -4,7 +4,6 @@ import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route} from "react-router-dom";
-import NewsFriends from "./components/Newsfriends/NewsFriends";
 import NewsGroupsContainer from "./components/NewsGroups/NewsGroupsContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import FriendContainer from "./components/Friends/FriendContainer";

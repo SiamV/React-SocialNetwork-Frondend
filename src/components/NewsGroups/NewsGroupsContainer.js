@@ -2,7 +2,6 @@ import {addPostGroupCreator, updateNewLetterCreator} from "../../redux/newsGroup
 import NewsGroups from "./NewsGroups";
 import {connect} from "react-redux";
 import {withLoginRedirect} from "../HOC/withLoginRedirect";
-import NewsFriends from "../Newsfriends/NewsFriends";
 
 const mapStateToProps = (state) => {
     return {

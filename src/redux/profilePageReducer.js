@@ -1,5 +1,5 @@
 //state default
-import {getUserProfile, getUsersStatus} from "../api/api";
+import {getUserProfile, getUsersStatus, updateUsersStatus} from "../api/api";
 
 let initialState = {
     myPostsData: [{
@@ -25,7 +25,7 @@ let initialState = {
     newPostAdd: '',
     profile: null,
     isLoading: false,
-    status: 'my status'
+    status: ''
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -50,19 +50,19 @@ const profilePageReducer = (state = initialState, action) => {
             };
         }
         case SET_USER_PROFILE: {
-            return  {
+            return {
                 ...state,
                 profile: action.profile
             }
         }
         case IS_LOADING_USER: {
-            return  {
+            return {
                 ...state,
                 isLoading: action.isLoading
             }
         }
         case SET_USERS_STATUS: {
-            return  {
+            return {
                 ...state,
                 status: action.status
             }
@@ -87,19 +87,33 @@ export const onWritePost = (text) => {
 }
 
 export const setUserProfile = (profile) => {
-    return {type:SET_USER_PROFILE, profile: profile}
+    return {type: SET_USER_PROFILE, profile: profile}
 }
 
 export const isLoadingUser = (isLoading) => {
-    return {type:IS_LOADING_USER, isLoading: isLoading}
+    return {type: IS_LOADING_USER, isLoading: isLoading}
 }
 
 export const setUsersStatus = (status) => {
-    return {type:SET_USERS_STATUS, status: status}
+    return {type: SET_USERS_STATUS, status: status}
+}
+
+export const getUserProfileThunkCreator = (userId) => {
+    return (
+        (dispatch) => {
+            dispatch(isLoadingUser(true));
+            getUserProfile(userId)
+                .then(data => {
+                    dispatch(isLoadingUser(false));
+                    dispatch(setUserProfile(data));
+
+                })
+        }
+    )
 }
 
 export const getUserStatusThunkCreator = (userId) => {
-    return(
+    return (
         (dispatch) => {
             getUsersStatus(userId)
                 .then(data => {
@@ -109,15 +123,14 @@ export const getUserStatusThunkCreator = (userId) => {
     )
 }
 
-export const getUserProfileThunkCreator = (userId) => {
-    return(
+export const updateUserStatusThunkCreator = (status) => {
+    return (
         (dispatch) => {
-            dispatch(isLoadingUser(true));
-            getUserProfile(userId)
+            updateUsersStatus(status)
                 .then(data => {
-                    dispatch(isLoadingUser(false));
-                    dispatch(setUserProfile(data));
-
+                    if (data.resultCode === 0) {
+                        dispatch(setUsersStatus(status))
+                    }
                 })
         }
     )

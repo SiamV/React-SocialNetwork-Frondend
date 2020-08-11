@@ -10,7 +10,6 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import {Redirect} from "react-router-dom";
 import {withLoginRedirect} from "../HOC/withLoginRedirect";
 
 class UsersAJAX extends React.Component {

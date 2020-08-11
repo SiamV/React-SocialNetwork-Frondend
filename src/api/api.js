@@ -27,6 +27,15 @@ export const getUsersStatus = (userId) => {
     )
 }
 
+export const updateUsersStatus = (status) => {
+    return (
+        instance.put(`profile/status`, {status: status})
+            .then(response => {
+                    return response.data
+            })
+    )
+}
+
 export const followUser = (id) => {
     return (
         instance.post(`follow/${id}`, {})

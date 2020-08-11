@@ -7,7 +7,8 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 const Profile = (props) => {
     return (
         <div className={classes.myFeed}>
-            <ProfileInfo profile={props.profile} isLoading={props.isLoading} status={props.status}/>
+            <ProfileInfo profile={props.profile} isLoading={props.isLoading}
+                         status={props.status} updateStatus={props.updateStatus} />
             <NewPostAddContainer />
             <MyPostsContainer />
         </div>
