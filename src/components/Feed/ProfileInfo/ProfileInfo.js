@@ -16,7 +16,7 @@ const ProfileInfo = (props) => {
             <div>Name: {props.profile.fullName}</div>
             <div>About me: {props.profile.aboutMe}</div>
             <div>Contacts: {props.profile.contacts.github}</div>
-            <div><ProfileStatus status={'A journey is best measured in friends, not in miles.'}/></div>
+            <div><ProfileStatus status={props.status}/></div>
 
         </div>
 

@@ -1,5 +1,5 @@
 //state default
-import {getUserProfile} from "../api/api";
+import {getUserProfile, getUsersStatus} from "../api/api";
 
 let initialState = {
     myPostsData: [{
@@ -24,7 +24,8 @@ let initialState = {
         }],
     newPostAdd: '',
     profile: null,
-    isLoading: false
+    isLoading: false,
+    status: 'my status'
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -60,6 +61,12 @@ const profilePageReducer = (state = initialState, action) => {
                 isLoading: action.isLoading
             }
         }
+        case SET_USERS_STATUS: {
+            return  {
+                ...state,
+                status: action.status
+            }
+        }
         default:
             return state;
     }
@@ -68,7 +75,8 @@ const profilePageReducer = (state = initialState, action) => {
 const ADD_MY_POST = 'ADD-MY-POST';
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const IS_LOADING_USER = 'IS_LOADING_USER'
+const IS_LOADING_USER = 'IS_LOADING_USER';
+const SET_USERS_STATUS = 'SET_USERS_STATUS';
 
 export const addPost = (text) => {
     return {type: ADD_MY_POST, postMessage: text}
@@ -84,6 +92,21 @@ export const setUserProfile = (profile) => {
 
 export const isLoadingUser = (isLoading) => {
     return {type:IS_LOADING_USER, isLoading: isLoading}
+}
+
+export const setUsersStatus = (status) => {
+    return {type:SET_USERS_STATUS, status: status}
+}
+
+export const getUserStatusThunkCreator = (userId) => {
+    return(
+        (dispatch) => {
+            getUsersStatus(userId)
+                .then(data => {
+                    dispatch(setUsersStatus(data));
+                })
+        }
+    )
 }
 
 export const getUserProfileThunkCreator = (userId) => {

@@ -18,6 +18,15 @@ export const getUsers = (currentPage, countUsersPage) => {
     )
 }
 
+export const getUsersStatus = (userId) => {
+    return (
+        instance.get(`profile/status/` + userId)
+            .then(response => {
+                return response.data
+            })
+    )
+}
+
 export const followUser = (id) => {
     return (
         instance.post(`follow/${id}`, {})
@@ -46,7 +55,7 @@ export const authMe = () => {
 }
 
 export const getUserProfile = (userId) => {
-    return(
+    return (
         instance.get(`profile/` + userId)
             .then(response => {
                 return response.data
