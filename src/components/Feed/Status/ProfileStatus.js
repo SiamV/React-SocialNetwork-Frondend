@@ -26,6 +26,14 @@ class ProfileStatus extends React.Component {
         )
     }
 
+    //for example how use componentDidUpdate. It's work without this code.
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevState.statusLocal !== this.props.status) {
+        this.setState({
+            statusLocal: this.props.status
+        })}
+    }
+
     render() {
         return (
             <div className={classes.statusBlock}>
