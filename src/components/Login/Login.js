@@ -1,8 +1,16 @@
 import React from "react";
-import classes from "./Login.module.css"
+import ReduxFormLogin from "./ReduxFormLogin";
+
 const Login = (props) => {
+    //get data from form's inputs
+    const onSubmit = (formData) => {
+        console.log(formData)
+    }
     return (
-        <div className={classes.loginForm}>Login form will be Here</div>
+        <div>
+            <h2>Login</h2>
+            <ReduxFormLogin onSubmit={onSubmit} />
+        </div>
     )
 }
 

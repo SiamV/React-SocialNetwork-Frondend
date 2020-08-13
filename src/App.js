@@ -10,8 +10,8 @@ import FriendContainer from "./components/Friends/FriendContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Feed/ProfileContainer";
 import AccountContainer from "./components/Account/AccountContainer";
-import Login from "./components/Login/Login";
 import NewsFriendsContainer from "./components/Newsfriends/NewsFriendsContainer";
+import Login from "./components/Login/Login";
 
 
 const App = () => {
