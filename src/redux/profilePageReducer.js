@@ -22,7 +22,6 @@ let initialState = {
                 ' Неважно, пишем ли мы кнопку, форму или целый экран: все они, как правило, представляют собой' +
                 ' компоненты в React-приложениях.', like: 120
         }],
-    newPostAdd: '',
     profile: null,
     isLoading: false,
     status: ''
@@ -40,13 +39,6 @@ const profilePageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 myPostsData: [...state.myPostsData, newPost],
-                newPostAdd: ''
-            };
-        }
-        case UPDATE_NEW_POST: {
-            return {
-                ...state,
-                newPostAdd: action.newSymbol
             };
         }
         case SET_USER_PROFILE: {
@@ -73,17 +65,12 @@ const profilePageReducer = (state = initialState, action) => {
 }
 
 const ADD_MY_POST = 'ADD-MY-POST';
-const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const IS_LOADING_USER = 'IS_LOADING_USER';
 const SET_USERS_STATUS = 'SET_USERS_STATUS';
 
 export const addPost = (text) => {
     return {type: ADD_MY_POST, postMessage: text}
-}
-
-export const onWritePost = (text) => {
-    return {type: UPDATE_NEW_POST, newSymbol: text}
 }
 
 export const setUserProfile = (profile) => {

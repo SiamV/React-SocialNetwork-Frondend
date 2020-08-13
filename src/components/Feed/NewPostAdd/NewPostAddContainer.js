@@ -1,4 +1,4 @@
-import {addPost, onWritePost} from "../../../redux/profilePageReducer";
+import {addPost} from "../../../redux/profilePageReducer";
 import NewPostAdd from "./NewPostAdd";
 import {connect} from "react-redux";
 
@@ -10,8 +10,7 @@ const mapStateToProps = (state) => {
 }
 
 const NewPostAddContainer = connect(mapStateToProps, {
-    addPost,
-    onWritePost
+    addPost
 })(NewPostAdd);
 
 
