@@ -1,14 +1,3 @@
-const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
-const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
-
-export const addMessage = (text) => {
-    return {type: ADD_MY_MESSAGE, postMessage: text}
-}
-
-export const onChangeMessage = (text) => {
-    return {type: UPDATE_NEW_MESSAGE, newSymbol: text}
-}
-
 let initialState = {
     userItemData: [
         {id: 1, name: "Andrew"},
@@ -23,7 +12,6 @@ let initialState = {
         {id: 3, message: "That fine. I work in Moscow"},
         {id: 4, message: "Ok. What is your profession?"}
     ],
-    updateMessage: ''
 }
 
 const messagePageReducer = (state = initialState,action) => {
@@ -36,17 +24,18 @@ const messagePageReducer = (state = initialState,action) => {
             //make the copy и логика. Return копии части state, которую мы меняем. Option 2.
             return {...state,
                 messagesData: [...state.messagesData, newMessage],
-                updateMessage: ''
             };
-        }
-        case UPDATE_NEW_MESSAGE: {
-            return {...state,
-                updateMessage: action.newSymbol
-            }
         }
         default:
             return state;
     }
 }
+
+const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
+
+export const addMessage = (text) => {
+    return {type: ADD_MY_MESSAGE, postMessage: text}
+}
+
 
 export default messagePageReducer;

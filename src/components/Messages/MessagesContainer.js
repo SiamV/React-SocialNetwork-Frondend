@@ -1,7 +1,7 @@
-import {addMessage, onChangeMessage} from "../../redux/messagesPageReducer";
-import Messages from "./Messages";
+import {addMessage} from "../../redux/messagesPageReducer";
 import {connect} from "react-redux";
 import {withLoginRedirect} from "../HOC/withLoginRedirect";
+import MessagesWithReduxForm from "./MessagesWithReduxForm";
 
 const mapStateToProps = (state) => {
     return {
@@ -11,8 +11,7 @@ const mapStateToProps = (state) => {
         isLogin: state.login.isLogin
     }
 }
-const LoginForm = withLoginRedirect(Messages);
+const LoginForm = withLoginRedirect(MessagesWithReduxForm);
 const MessagesContainer = connect(mapStateToProps, {
-    addMessage,
-    onChangeMessage}) (LoginForm);
+    addMessage}) (LoginForm);
 export default MessagesContainer;
