@@ -4,7 +4,6 @@ import classes from './FormsSpecialControl.module.css'
 
 export const Textarea = ({input, meta, ...props}) => {
     const hasError = meta.error && meta.touched;
-    console.log(meta)
     return (
         <div className={hasError ? classes.error : ''}>
             <div><textarea {...input} {...props} /></div>
@@ -14,9 +13,11 @@ export const Textarea = ({input, meta, ...props}) => {
 }
 
 export const Input = ({input, meta, ...props}) => {
+    const hasError = meta.error && meta.touched;
     return (
-        <div>
-            <input {...input} {...props} />
+        <div className={hasError ? classes.error : ''}>
+            <div><input {...input} {...props} /></div>
+            {hasError && <span>{meta.error}</span>}
         </div>
     )
 }
