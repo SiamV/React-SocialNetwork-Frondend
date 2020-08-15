@@ -1,7 +1,7 @@
 import React from "react";
 import Account from "./Account";
 import {connect} from "react-redux";
-import {loginThunkCreator} from "../../redux/loginReducer";
+import {loginThunkCreator, logoutSiteThunkCreator} from "../../redux/loginReducer";
 
 class AccountContainer extends React.Component {
     componentDidMount() {
@@ -21,4 +21,4 @@ let mapStateToProps = (state) => {
         login: state.login.login
     }
 }
-export default connect(mapStateToProps, {loginThunkCreator})(AccountContainer);
+export default connect(mapStateToProps, {loginThunkCreator, logoutSiteThunkCreator})(AccountContainer);

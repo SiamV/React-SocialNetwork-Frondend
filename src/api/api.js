@@ -71,3 +71,16 @@ export const getUserProfile = (userId) => {
             })
     )
 }
+
+export const loginAPI = {
+    loginPostAPI (email, password,rememberMe) {
+        return(
+            instance.post(`auth/login`, {email, password,rememberMe})
+        )
+    },
+    logoutDeleteAPI() {
+        return(
+            instance.delete(`auth/login`)
+        )
+    }
+}

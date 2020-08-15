@@ -9,7 +9,7 @@ const maxLength20 = maxLengthCreator(20);
 const FormLogin = (props) => {
     return (
         <form className={classes.loginForm} onSubmit={props.handleSubmit}>
-            <div><Field name={'login'} component={Input} placeholder={'login'}
+            <div><Field name={'email'} component={Input} placeholder={'email'}
                         validate={[requiredField, maxLength20]} /></div>
             <div><Field name={'password'} component={Input} placeholder={'password'}
                         validate={[requiredField, maxLength20]} /></div>
