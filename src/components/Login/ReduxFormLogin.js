@@ -12,8 +12,9 @@ const FormLogin = (props) => {
             <div><Field name={'email'} component={Input} placeholder={'email'}
                         validate={[requiredField, maxLength20]} /></div>
             <div><Field name={'password'} component={Input} placeholder={'password'}
-                        validate={[requiredField, maxLength20]} /></div>
+                        validate={[requiredField, maxLength20]} type={'password'} /></div>
             <div><Field name={'rememberMe'} component={Input} type={'checkbox'} /> remember me</div>
+            {props.error && <div className={classes.errors}>{props.error}</div>}
             <div>
                 <button>Login</button>
             </div>

@@ -1,4 +1,5 @@
 import {authMe, loginAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 let defaultState = {
     id: null,
@@ -45,6 +46,10 @@ export const loginSiteThunkCreator = (email, password, rememberMe) => (dispatch)
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(loginThunkCreator())
+            } else {
+                // надо плюсом использовать каптчу
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error' //
+                dispatch(stopSubmit('login', {_error: message}))
             }
         })
 }

@@ -13,7 +13,7 @@ class ProfileAJAX extends React.Component {
         //данные о userId из withRouter
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 9640;
+            userId = this.props.myUserId;
         }
         //use thunk
         this.props.getUserProfileThunkCreator(userId);
@@ -33,7 +33,9 @@ let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
         isLoading: state.profilePage.isLoading,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        myUserId: state.login.id,
+        isLogin: state.login.isLogin //пока не используется
     }
 }
 
