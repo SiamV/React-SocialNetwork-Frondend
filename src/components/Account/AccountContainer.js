@@ -6,6 +6,8 @@ import {loginThunkCreator, logoutSiteThunkCreator} from "../../redux/loginReduce
 class AccountContainer extends React.Component {
 
     //loginThunkCreator вызовем при логинезации в loginSiteThunkCreator. Получается это сейчас лишним.
+    // перенесем его в инициализацию приложения в app.js. Если мы залогинины, то сначала подгрузим данные о нас, а
+    // потом отрисуем все приложение
     // componentDidMount() {
     //     this.props.loginThunkCreator();
     // }

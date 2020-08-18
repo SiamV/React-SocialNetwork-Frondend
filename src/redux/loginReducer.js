@@ -31,7 +31,7 @@ export const setMyData = (id, login, email, isLogin) => ({
 export const loginThunkCreator = () => {
     return (
         (dispatch) => {
-            authMe()
+            return authMe() //return чтобы promise вернулся наружу. Мы его используем в appReducer
                 .then(data => {
                     if (data.resultCode === 0) {
                         dispatch(setMyData(data.data.id, data.data.login, data.data.email, true));

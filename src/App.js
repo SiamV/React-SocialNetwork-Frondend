@@ -12,28 +12,41 @@ import ProfileContainer from "./components/Feed/ProfileContainer";
 import AccountContainer from "./components/Account/AccountContainer";
 import NewsFriendsContainer from "./components/Newsfriends/NewsFriendsContainer";
 import Login from "./components/Login/Login";
+import {connect} from "react-redux";
+import {ThunkCreatorInitialized} from "./redux/appReducer";
+import Preloader from "./components/common/Preloader/Preloader";
 
+class App extends React.Component {
+    componentDidMount() {
+        this.props.ThunkCreatorInitialized();
+    }
 
-const App = () => {
-    return (
-        <BrowserRouter>
-            <div className={'site-wrapper'}>
-                <div className={'site-wrapper-header'}><Header /></div>
-                <div className={'site-wrapper-nav'}><Nav /></div>
-                <div className={'site-wrapper-account'}><AccountContainer /></div>
-                <div className={'site-wrapper-friends'}><FriendContainer /></div>
-                <div className={'site-wrapper-feed'}>
-                    <Route path={'/news'} component={NewsFriendsContainer} />
-                    <Route path={'/groups'} render={() => <NewsGroupsContainer />} />
-                    <Route path={'/messages'} render={() => <MessagesContainer />} />
-                    <Route path={'/profile/:userId?'} render={() => <ProfileContainer />} />
-                    <Route path={'/login'} render={() => <Login />} />
-                    <Route path={'/users'} render={() => <UsersContainer />} />
+    render() {
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
+        return (
+            <BrowserRouter>
+                <div className={'site-wrapper'}>
+                    <div className={'site-wrapper-header'}><Header /></div>
+                    <div className={'site-wrapper-nav'}><Nav /></div>
+                    <div className={'site-wrapper-account'}><AccountContainer /></div>
+                    <div className={'site-wrapper-friends'}><FriendContainer /></div>
+                    <div className={'site-wrapper-feed'}>
+                        <Route path={'/news'} component={NewsFriendsContainer} />
+                        <Route path={'/groups'} render={() => <NewsGroupsContainer />} />
+                        <Route path={'/messages'} render={() => <MessagesContainer />} />
+                        <Route path={'/profile/:userId?'} render={() => <ProfileContainer />} />
+                        <Route path={'/login'} render={() => <Login />} />
+                        <Route path={'/users'} render={() => <UsersContainer />} />
+                    </div>
+                    <div className={'site-wrapper-sidebar'}><Sidebar /></div>
                 </div>
-                <div className={'site-wrapper-sidebar'}><Sidebar /></div>
-            </div>
-        </BrowserRouter>
-    );
+            </BrowserRouter>
+        );
+    }
 }
-
-export default App;
+const mapStateToProps = (state) => ({
+    initialized: state.app.initialized
+})
+export default connect(mapStateToProps, {ThunkCreatorInitialized})(App);
