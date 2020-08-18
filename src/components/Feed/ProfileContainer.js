@@ -14,6 +14,9 @@ class ProfileAJAX extends React.Component {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.myUserId;
+            if (!userId) {
+                this.props.history.push('/login')
+            } //if do logout we haven't stay in url/profile. Почему-то не переходит
         }
         //use thunk
         this.props.getUserProfileThunkCreator(userId);

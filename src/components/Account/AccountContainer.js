@@ -4,9 +4,11 @@ import {connect} from "react-redux";
 import {loginThunkCreator, logoutSiteThunkCreator} from "../../redux/loginReducer";
 
 class AccountContainer extends React.Component {
-    componentDidMount() {
-        this.props.loginThunkCreator();
-    }
+
+    //loginThunkCreator вызовем при логинезации в loginSiteThunkCreator. Получается это сейчас лишним.
+    // componentDidMount() {
+    //     this.props.loginThunkCreator();
+    // }
 
     render() {
         return (

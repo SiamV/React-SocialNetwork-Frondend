@@ -3,7 +3,6 @@ import classes from './Account.module.css'
 import {NavLink} from "react-router-dom";
 
 const Account = (props) => {
-    console.log(props.isLogin);
     return (
         <div className={classes.myProfile}>
             {props.isLogin
