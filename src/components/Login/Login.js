@@ -3,6 +3,7 @@ import ReduxFormLogin from "./ReduxFormLogin";
 import {connect} from "react-redux";
 import {loginSiteThunkCreator} from "../../redux/loginReducer";
 import {Redirect} from "react-router-dom";
+import {getIsLogin} from "../../redux/loginSelectors";
 
 const Login = (props) => {
     //если прошли логинизацию
@@ -25,7 +26,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => (
     {
-        isLogin: state.login.isLogin
+        isLogin: getIsLogin(state)
     }
 )
 export default connect(mapStateToProps,{loginSiteThunkCreator}) (Login);

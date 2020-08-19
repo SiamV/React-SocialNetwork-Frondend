@@ -1,5 +1,5 @@
 //state
-import {followUser, getUsers, unfollowUser} from "../api/api";
+import {followUser, getUsersFromServer, unfollowUser} from "../api/api";
 
 let stateDefault = {
     users: [
@@ -133,7 +133,7 @@ export const getUsersThunk = (currentPage, countUsersPage) => {
             //page - текущая страница, count - число пользователей на страницу
             dispatch(setIsLoading(true));
             dispatch(setCurrentPage(currentPage)); //только для onPageChange = (page) чтобы менялось подсветка
-            getUsers(currentPage, countUsersPage)
+            getUsersFromServer(currentPage, countUsersPage)
                 .then(data => {
                     dispatch(setIsLoading(false));
                     dispatch(setUsers(data.items));

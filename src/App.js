@@ -36,7 +36,8 @@ class App extends React.Component {
                         <Route path={'/news'} component={NewsFriendsContainer} />
                         <Route path={'/groups'} render={() => <NewsGroupsContainer />} />
                         <Route path={'/messages'} render={() => <MessagesContainer />} />
-                        <Route path={'/profile/:userId?'} render={() => <ProfileContainer />} />
+                        <Route exact path={'/profile'} render={() => <ProfileContainer />} />
+                        <Route path={'/profile/:userId'} render={() => <ProfileContainer />} />
                         <Route path={'/login'} render={() => <Login />} />
                         <Route path={'/users'} render={() => <UsersContainer />} />
                     </div>

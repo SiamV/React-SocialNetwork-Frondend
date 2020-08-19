@@ -8,7 +8,7 @@ const instance = axios.create(
     }
 )
 
-export const getUsers = (currentPage, countUsersPage) => {
+export const getUsersFromServer = (currentPage, countUsersPage) => {
     return (
         instance.get(`users?page=${currentPage}&count=${countUsersPage}`
         )

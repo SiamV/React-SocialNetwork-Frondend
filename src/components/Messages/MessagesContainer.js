@@ -2,13 +2,14 @@ import {addMessage} from "../../redux/messagesPageReducer";
 import {connect} from "react-redux";
 import {withLoginRedirect} from "../HOC/withLoginRedirect";
 import MessagesWithReduxForm from "./MessagesWithReduxForm";
+import {getMessagesData, getUserItemData} from "../../redux/messagesSelectors";
+import {getIsLogin} from "../../redux/loginSelectors";
 
 const mapStateToProps = (state) => {
     return {
-        userItemData: state.messagesPage.userItemData,
-        messagesData: state.messagesPage.messagesData,
-        updateMessage: state.messagesPage.updateMessage,
-        isLogin: state.login.isLogin
+        userItemData: getUserItemData(state),
+        messagesData: getMessagesData(state),
+        isLogin: getIsLogin(state)
     }
 }
 const LoginForm = withLoginRedirect(MessagesWithReduxForm);

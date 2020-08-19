@@ -11,6 +11,14 @@ import {
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {withLoginRedirect} from "../HOC/withLoginRedirect";
+import {
+    getCountUsersPage,
+    getCurrentPage, getIsButtonDisabling,
+    getIsLoading,
+    getTotalCountUsers,
+    getUsers
+} from "../../redux/usersSelectors";
+import {getIsLogin} from "../../redux/loginSelectors";
 
 class UsersAJAX extends React.Component {
     // constructor(props) {
@@ -48,13 +56,13 @@ class UsersAJAX extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        countUsersPage: state.usersPage.countUsersPage,
-        totalCountUsers: state.usersPage.totalCountUsers,
-        currentPage: state.usersPage.currentPage,
-        isLoading: state.usersPage.isLoading,
-        isButtonDisabling: state.usersPage.isButtonDisabling,
-        isLogin: state.login.isLogin
+        users: getUsers(state),
+        countUsersPage: getCountUsersPage(state),
+        totalCountUsers: getTotalCountUsers(state),
+        currentPage: getCurrentPage(state),
+        isLoading: getIsLoading(state),
+        isButtonDisabling: getIsButtonDisabling(state),
+        isLogin: getIsLogin(state)
     }
 }
 
