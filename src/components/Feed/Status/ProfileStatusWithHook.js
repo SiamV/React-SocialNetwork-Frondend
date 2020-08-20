@@ -7,8 +7,8 @@ export const ProfileStatusWithHook = (props) => {
 
     useEffect(() => {
         setStatusLocal(props.status)
-    }, [props.status]) 
-
+    }, [props.status])
+       
     const activateEditMode = () => {
         setEditMode(true)
     }
