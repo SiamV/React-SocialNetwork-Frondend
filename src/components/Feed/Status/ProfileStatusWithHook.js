@@ -34,6 +34,6 @@ export const ProfileStatusWithHook = (props) => {
                         onBlur={deactivateEditMode} placeholder={'create new status'} /></div>}
         </div>
     )
-}
+}  
 
 export default ProfileStatusWithHook;
