@@ -69,10 +69,12 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const IS_LOADING_USER = 'IS_LOADING_USER';
 const SET_USERS_STATUS = 'SET_USERS_STATUS';
 
+//our posts
 export const addPost = (text) => {
     return {type: ADD_MY_POST, postMessage: text}
 }
 
+//set profile other users
 export const setUserProfile = (profile) => {
     return {type: SET_USER_PROFILE, profile: profile}
 }
