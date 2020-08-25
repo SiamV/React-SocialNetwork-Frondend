@@ -82,13 +82,13 @@ const usersReducer = (state = stateDefault, action) => {
 
 //constants
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SWITCH_LOADING = 'SWITCH_LOADING';
-const IS_BUTTON_DISAIBLING = 'IS_BUTTON_DISAIBLING';
+const FOLLOW = 'usersReducer/FOLLOW';
+const UNFOLLOW = 'usersReducer/UNFOLLOW';
+const SET_USERS = 'usersReducer/SET_USERS';
+const SET_TOTAL_COUNT_USERS = 'usersReducer/SET_TOTAL_COUNT_USERS';
+const SET_CURRENT_PAGE = 'usersReducer/SET_CURRENT_PAGE';
+const SWITCH_LOADING = 'usersReducer/SWITCH_LOADING';
+const IS_BUTTON_DISAIBLING = 'usersReducer/IS_BUTTON_DISAIBLING';
 
 //ActionCreators
 
@@ -127,50 +127,32 @@ export const setButtonDisabling = (isDisabling) => (
 
 //ThunksCreators
 
-export const getUsersThunk = (currentPage, countUsersPage) => {
-    return (
-        (dispatch) => {
-            //page - текущая страница, count - число пользователей на страницу
-            dispatch(setIsLoading(true));
-            dispatch(setCurrentPage(currentPage)); //только для onPageChange = (page) чтобы менялось подсветка
-            getUsersFromServer(currentPage, countUsersPage)
-                .then(data => {
-                    dispatch(setIsLoading(false));
-                    dispatch(setUsers(data.items));
-                    dispatch(setTotalCountUsers(data.totalCount));
-                })
-        }
-    )
+export const getUsersThunk = (currentPage, countUsersPage) => async (dispatch) => {
+    //page - текущая страница, count - число пользователей на страницу
+    dispatch(setIsLoading(true));
+    dispatch(setCurrentPage(currentPage)); //только для onPageChange = (page) чтобы менялось подсветка
+    let data = await getUsersFromServer(currentPage, countUsersPage)
+    dispatch(setIsLoading(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalCountUsers(data.totalCount));
 }
 
-export const unfollowThunkCreator = (userId) => {
-    return (
-        (dispatch) => {
-            dispatch(setButtonDisabling(true));
-            unfollowUser(userId)
-                .then(data => {
-                    if(data.resultCode === 0) {
-                        dispatch(unfollow(userId))
-                        dispatch(setButtonDisabling(false));
-                    }
-                })
-        }
-    )
+export const unfollowThunkCreator = (userId) => async (dispatch) => {
+    dispatch(setButtonDisabling(true));
+    let data = await unfollowUser(userId)
+    if (data.resultCode === 0) {
+        dispatch(unfollow(userId))
+        dispatch(setButtonDisabling(false));
+    }
 }
 
-export const followThunkCreator = (userId) => {
-    return (
-        (dispatch) => {
-            dispatch(setButtonDisabling(true));
-            followUser(userId)
-                .then(data => {
-                    if (data.resultCode === 0) {
-                        dispatch(follow(userId));
-                        dispatch(setButtonDisabling(false));
-                    }
-                })
-        }
-    )
+export const followThunkCreator = (userId) => async (dispatch) => {
+    dispatch(setButtonDisabling(true));
+    let data = await followUser(userId)
+    if (data.resultCode === 0) {
+        dispatch(follow(userId));
+        dispatch(setButtonDisabling(false));
+    }
 }
 
 export default usersReducer;

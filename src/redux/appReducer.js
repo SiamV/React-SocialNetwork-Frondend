@@ -14,7 +14,7 @@ const appReducer = (state = stateDefault, action) => {
             return state
     }
 }
-const SET_INITIALIZED = 'SET_INITIALIZED';
+const SET_INITIALIZED = 'appReducer/SET_INITIALIZED';
 export const InitializeReady = () => ({type: SET_INITIALIZED})
 
 export const ThunkCreatorInitialized = () => (dispatch) => {

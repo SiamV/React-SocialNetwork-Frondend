@@ -1,5 +1,5 @@
-const ADD_POST_GROUP = 'ADD-POST-GROUP';
-const UPDATE_NEW_POST_GROUP = 'UPDATE-NEW-POST-GROUP';
+const ADD_POST_GROUP = 'newsGroupsPageReducer/ADD-POST-GROUP';
+const UPDATE_NEW_POST_GROUP = 'newsGroupsPageReducer/UPDATE-NEW-POST-GROUP';
 
 export  const addPostGroupCreator = () => {
     return {type: ADD_POST_GROUP}

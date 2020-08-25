@@ -64,10 +64,10 @@ const profilePageReducer = (state = initialState, action) => {
     }
 }
 
-const ADD_MY_POST = 'ADD-MY-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const IS_LOADING_USER = 'IS_LOADING_USER';
-const SET_USERS_STATUS = 'SET_USERS_STATUS';
+const ADD_MY_POST = 'profilePageReducer/ADD-MY-POST';
+const SET_USER_PROFILE = 'profilePageReducer/SET_USER_PROFILE';
+const IS_LOADING_USER = 'profilePageReducer/IS_LOADING_USER';
+const SET_USERS_STATUS = 'profilePageReducer/SET_USERS_STATUS';
 
 //our posts
 export const addPost = (text) => {
@@ -87,42 +87,23 @@ export const setUsersStatus = (status) => {
     return {type: SET_USERS_STATUS, status: status}
 }
 
-export const getUserProfileThunkCreator = (userId) => {
-    return (
-        (dispatch) => {
-            dispatch(isLoadingUser(true));
-            getUserProfile(userId)
-                .then(data => {
-                    dispatch(isLoadingUser(false));
-                    dispatch(setUserProfile(data));
-
-                })
-        }
-    )
+export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
+    dispatch(isLoadingUser(true));
+    let data = await getUserProfile(userId)
+    dispatch(isLoadingUser(false));
+    dispatch(setUserProfile(data));
 }
 
-export const getUserStatusThunkCreator = (userId) => {
-    return (
-        (dispatch) => {
-            getUsersStatus(userId)
-                .then(data => {
-                    dispatch(setUsersStatus(data));
-                })
-        }
-    )
+export const getUserStatusThunkCreator = (userId) => async (dispatch) => {
+    let data = await getUsersStatus(userId)
+    dispatch(setUsersStatus(data));
 }
 
-export const updateUserStatusThunkCreator = (status) => {
-    return (
-        (dispatch) => {
-            updateUsersStatus(status)
-                .then(data => {
-                    if (data.resultCode === 0) {
-                        dispatch(setUsersStatus(status))
-                    }
-                })
-        }
-    )
+export const updateUserStatusThunkCreator = (status) => async (dispatch) => {
+    let data = await updateUsersStatus(status)
+            if (data.resultCode === 0) {
+                dispatch(setUsersStatus(status))
+            }
 }
 
 export default profilePageReducer;

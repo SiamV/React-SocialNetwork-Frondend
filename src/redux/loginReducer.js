@@ -21,7 +21,7 @@ const loginReducer = (state = defaultState, action) => {
     }
 }
 
-const SET_MY_DATA = 'SET_MY_DATA';
+const SET_MY_DATA = 'loginReducer/SET_MY_DATA';
 
 export const setMyData = (id, login, email, isLogin) => ({
     type: SET_MY_DATA,
@@ -41,9 +41,9 @@ export const loginThunkCreator = () => {
     )
 }
 
-export const loginSiteThunkCreator = (email, password, rememberMe) => (dispatch) => {
-    loginAPI.loginPostAPI(email, password, rememberMe)
-        .then(response => {
+export const loginSiteThunkCreator = (email, password, rememberMe) => async (dispatch) => {
+    let response = await loginAPI.loginPostAPI(email, password, rememberMe)
+
             if (response.data.resultCode === 0) {
                 dispatch(loginThunkCreator())
             } else {
@@ -51,16 +51,14 @@ export const loginSiteThunkCreator = (email, password, rememberMe) => (dispatch)
                 let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error' //
                 dispatch(stopSubmit('login', {_error: message}))
             }
-        })
 }
 
-export const logoutSiteThunkCreator = () => (dispatch) => {
-    loginAPI.logoutDeleteAPI()
-        .then(response => {
+export const logoutSiteThunkCreator = () => async (dispatch) => {
+    let response = await loginAPI.logoutDeleteAPI()
+
             if (response.data.resultCode === 0) {
                 dispatch(setMyData(null, null, null, false))
             }
-        })
 }
 
 export default loginReducer;

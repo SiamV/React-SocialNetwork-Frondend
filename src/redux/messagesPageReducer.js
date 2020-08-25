@@ -31,7 +31,7 @@ const messagePageReducer = (state = initialState,action) => {
     }
 }
 
-const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
+const ADD_MY_MESSAGE = 'messagePageReducer/ADD-MY-MESSAGE';
 
 export const addMessage = (text) => {
     return {type: ADD_MY_MESSAGE, postMessage: text}
