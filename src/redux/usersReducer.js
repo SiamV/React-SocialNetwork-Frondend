@@ -52,7 +52,7 @@ const usersReducer = (state = stateDefault, action) => {
         case SET_TOTAL_COUNT_USERS: {
             let stateCopy = {
                 ...state,
-                totalCountUsers: action.totalUsers / 50
+                totalCountUsers: action.totalUsers / 25
             }
             return stateCopy;
         }

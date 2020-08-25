@@ -1,0 +1,12 @@
+.pagination .current {
+    font-weight: bold;
+    font-size: 22px;
+
+}
+.pagination .othersNumbers {
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+}
+
+
