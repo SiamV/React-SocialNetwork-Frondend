@@ -1,5 +1,5 @@
 import React from "react";
-import fotoDefault from '../../drawable/avatarDefault.png'
+import fotoDefault from '../../drawable/myDefaultAvatar.png'
 import {NavLink} from "react-router-dom";
 
 const User = (props) => {

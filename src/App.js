@@ -12,9 +12,10 @@ import ProfileContainer from "./components/Feed/ProfileContainer";
 import AccountContainer from "./components/Account/AccountContainer";
 import NewsFriendsContainer from "./components/Newsfriends/NewsFriendsContainer";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {ThunkCreatorInitialized} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import store from "./redux/store-redux";
 
 class App extends React.Component {
     componentDidMount() {
@@ -23,10 +24,9 @@ class App extends React.Component {
 
     render() {
         if (!this.props.initialized) {
-            return <Preloader/>
+            return <Preloader />
         }
         return (
-            <BrowserRouter>
                 <div className={'site-wrapper'}>
                     <div className={'site-wrapper-header'}><Header /></div>
                     <div className={'site-wrapper-nav'}><Nav /></div>
@@ -43,11 +43,23 @@ class App extends React.Component {
                     </div>
                     <div className={'site-wrapper-sidebar'}><Sidebar /></div>
                 </div>
-            </BrowserRouter>
         );
     }
 }
+
 const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
-export default connect(mapStateToProps, {ThunkCreatorInitialized})(App);
+const AppContainer = connect(mapStateToProps, {ThunkCreatorInitialized})(App);
+
+const MyProjectApp = (props) => {
+    return (
+            <BrowserRouter>
+                <Provider store={store}>
+                    <AppContainer />
+                </Provider>
+            </BrowserRouter>
+    )
+}
+
+export default MyProjectApp;
