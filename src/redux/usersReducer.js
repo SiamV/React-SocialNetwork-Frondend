@@ -8,9 +8,9 @@ let stateDefault = {
         // {id:2, followed: false, fullName: 'Denis Krasnov', location: {city: 'Ramenskoe', country: 'Russia'}},
         // {id:3, followed: true, fullName: 'Evgenia Vasileva', location: {city: 'Kaliningrad', country: 'Russia'}},
     ],
-    countUsersPage: 7,
+    countUsersPage: 10,
     totalCountUsers: 0,
-    currentPage: 2,
+    currentPage: 1,
     isLoading: false,
     isButtonDisabling: false
 }
@@ -52,7 +52,7 @@ const usersReducer = (state = stateDefault, action) => {
         case SET_TOTAL_COUNT_USERS: {
             let stateCopy = {
                 ...state,
-                totalCountUsers: action.totalUsers / 25
+                totalCountUsers: action.totalUsers
             }
             return stateCopy;
         }
