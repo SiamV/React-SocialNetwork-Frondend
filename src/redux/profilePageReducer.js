@@ -1,5 +1,5 @@
 //state default
-import {getUserProfile, getUsersStatus, updateUsersStatus} from "../api/api";
+import {APIsavePhoto, getUserProfile, getUsersStatus, updateUsersStatus} from "../api/api";
 
 let initialState = {
     myPostsData: [{
@@ -59,6 +59,12 @@ const profilePageReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
+        case SAVE_PHOTO_SUCCESS: {
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
+        }
         default:
             return state;
     }
@@ -68,10 +74,15 @@ const ADD_MY_POST = 'profilePageReducer/ADD-MY-POST';
 const SET_USER_PROFILE = 'profilePageReducer/SET_USER_PROFILE';
 const IS_LOADING_USER = 'profilePageReducer/IS_LOADING_USER';
 const SET_USERS_STATUS = 'profilePageReducer/SET_USERS_STATUS';
+const SAVE_PHOTO_SUCCESS = 'profilePageReducer/SAVE_PHOTO_SUCCESS'
 
 //our posts
 export const addPost = (text) => {
     return {type: ADD_MY_POST, postMessage: text}
+}
+
+export const changeAvatar = (photos) => {
+    return {type: SAVE_PHOTO_SUCCESS, photos: photos}
 }
 
 //set profile other users
@@ -101,9 +112,16 @@ export const getUserStatusThunkCreator = (userId) => async (dispatch) => {
 
 export const updateUserStatusThunkCreator = (status) => async (dispatch) => {
     let data = await updateUsersStatus(status)
-            if (data.resultCode === 0) {
-                dispatch(setUsersStatus(status))
-            }
+    if (data.resultCode === 0) {
+        dispatch(setUsersStatus(status))
+    }
+}
+
+export const savePhoto = (file) => async (dispatch) => {
+    let response = await APIsavePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(changeAvatar(response.data.data.photos))
+    }
 }
 
 export default profilePageReducer;

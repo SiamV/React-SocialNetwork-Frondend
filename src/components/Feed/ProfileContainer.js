@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
     getUserProfileThunkCreator,
-    getUserStatusThunkCreator,
+    getUserStatusThunkCreator, savePhoto,
     updateUserStatusThunkCreator
 } from "../../redux/profilePageReducer";
 import {withRouter} from "react-router-dom";
@@ -23,7 +23,7 @@ class ProfileAJAX extends React.Component {
         this.props.getUserStatusThunkCreator(userId);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.match.params.userId != prevProps.match.params.userId) {
+        if(this.props.match.params.userId !== prevProps.match.params.userId) {
             //данные о userId из withRouter
             let userId = this.props.match.params.userId;
             if (!userId) {
@@ -40,8 +40,13 @@ class ProfileAJAX extends React.Component {
 
     render() {
         return (
-            <Profile {...this.state} profile={this.props.profile} isLoading={this.props.isLoading}
-                     status={this.props.status} updateStatus={this.props.updateUserStatusThunkCreator}
+            <Profile {...this.state}
+                     profile={this.props.profile}
+                     isLoading={this.props.isLoading}
+                     status={this.props.status}
+                     updateStatus={this.props.updateUserStatusThunkCreator}
+                     isOwner ={this.props.match.params.userId}
+                     savePhoto={this.props.savePhoto}
             />
         )
     }
@@ -61,6 +66,7 @@ let mapStateToProps = (state) => {
 let UrlProfileContainer = withRouter(ProfileAJAX);
 const ProfileContainer = connect(mapStateToProps, {
     getUserProfileThunkCreator,
-    getUserStatusThunkCreator, updateUserStatusThunkCreator
+    getUserStatusThunkCreator, updateUserStatusThunkCreator,
+    savePhoto
 })(UrlProfileContainer);
 export default ProfileContainer;
