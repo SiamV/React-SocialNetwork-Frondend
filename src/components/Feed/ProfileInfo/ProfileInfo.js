@@ -3,6 +3,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import classes from "./ProfileInfo.module.css"
 import ProfileStatusWithHook from "../Status/ProfileStatusWithHook";
 import fotoDefault from '../../../drawable/myDefaultAvatar.png';
+import FormikProfileDataForm from "./FormikProfileDataForm";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -29,14 +30,13 @@ const ProfileInfo = (props) => {
             <div>{!props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}</div>
             <div><b>My status</b>: <ProfileStatusWithHook status={props.status} updateStatus={props.updateStatus} />
             </div>
-            <div>{editMode ? <ProfileDataForm />
+            <div>{editMode ? <FormikProfileDataForm editProfileInfo={props.editProfileInfo}/>
                 : <ProfileData profile={props.profile}
                                isOwner={props.isOwner}
                                goToEditMode={() => {
                                    setEditMode(true)
                                }} />}</div>
         </div>
-
     )
 }
 export default ProfileInfo;
@@ -46,6 +46,7 @@ const ProfileData = (props) => {
         <div>
             <div><b>Name</b>: {props.profile.fullName}</div>
             <div><b>About me</b>: {props.profile.aboutMe}</div>
+            <div><b>My stack</b>: {props.profile.lookingForAJobDescription}</div>
             <div><b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
                 return <Contacts contactTitle={key}
                                  contactValue={props.profile.contacts[key]}
@@ -61,14 +62,6 @@ const Contacts = (props) => {
     return (
         <div>
             {props.contactTitle}: {props.contactValue}
-        </div>
-    )
-}
-
-const ProfileDataForm = (props) => {
-    return (
-        <div>
-            Form
         </div>
     )
 }

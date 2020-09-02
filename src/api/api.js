@@ -82,6 +82,12 @@ export const APIsavePhoto = (filePhoto) => {
     )
 }
 
+export const APIeditProfileInfo = (values) => {
+    return (
+        instance.put(`profile`, values)
+    )
+}
+
 export const loginAPI = {
     loginPostAPI(email, password, rememberMe) {
         return (

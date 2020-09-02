@@ -2,6 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
+    editProfileInfo,
     getUserProfileThunkCreator,
     getUserStatusThunkCreator, savePhoto,
     updateUserStatusThunkCreator
@@ -47,6 +48,7 @@ class ProfileAJAX extends React.Component {
                      updateStatus={this.props.updateUserStatusThunkCreator}
                      isOwner ={this.props.match.params.userId}
                      savePhoto={this.props.savePhoto}
+                     editProfileInfo={this.props.editProfileInfo}
             />
         )
     }
@@ -67,6 +69,6 @@ let UrlProfileContainer = withRouter(ProfileAJAX);
 const ProfileContainer = connect(mapStateToProps, {
     getUserProfileThunkCreator,
     getUserStatusThunkCreator, updateUserStatusThunkCreator,
-    savePhoto
+    savePhoto, editProfileInfo
 })(UrlProfileContainer);
 export default ProfileContainer;

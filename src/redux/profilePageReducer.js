@@ -1,5 +1,5 @@
 //state default
-import {APIsavePhoto, getUserProfile, getUsersStatus, updateUsersStatus} from "../api/api";
+import {APIeditProfileInfo, APIsavePhoto, getUserProfile, getUsersStatus, updateUsersStatus} from "../api/api";
 
 let initialState = {
     myPostsData: [{
@@ -121,6 +121,14 @@ export const savePhoto = (file) => async (dispatch) => {
     let response = await APIsavePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(changeAvatar(response.data.data.photos))
+    }
+}
+
+export const editProfileInfo = (values) => async (dispatch) => {
+    let response = await APIeditProfileInfo (values)
+    console.log(response)
+    debugger;
+    if (response.data.resultCode === 0) {
     }
 }
 
