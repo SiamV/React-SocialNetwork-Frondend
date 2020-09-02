@@ -4,13 +4,14 @@ import {useFormik} from 'formik';
 const FormikProfileDataForm = (props) => {
     const formik = useFormik({
         initialValues: {
-            fullName: "",
-            aboutMe: "",
-            lookingForAJobDescription: ""
+            fullName: props.profile.fullName,
+            aboutMe: props.profile.aboutMe,
+            lookingForAJobDescription: props.profile.lookingForAJobDescription,
+            contacts: props.profile.contacts
         },
         onSubmit: values => {
-            // alert(JSON.stringify(values, null, 2));
             props.editProfileInfo(values);
+            props.setEditMode(false);
             console.log(values);
         }
     });
@@ -38,6 +39,19 @@ const FormikProfileDataForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.lookingForAJobDescription}
             /></div>
+
+            {/*<div><b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {*/}
+            {/*    return <div key={key}> {key}: <input*/}
+            {/*        id={key}*/}
+            {/*        name="contacts+{key}"*/}
+            {/*        type="text"*/}
+            {/*        placeholder={key}*/}
+            {/*        onChange={formik.handleChange}*/}
+            {/*        value={formik.values.contacts}*/}
+            {/*    />*/}
+            {/*    </div>*/}
+            {/*})}*/}
+            {/*</div>*/}
         </form>
     );
 }

@@ -30,7 +30,9 @@ const ProfileInfo = (props) => {
             <div>{!props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}</div>
             <div><b>My status</b>: <ProfileStatusWithHook status={props.status} updateStatus={props.updateStatus} />
             </div>
-            <div>{editMode ? <FormikProfileDataForm editProfileInfo={props.editProfileInfo}/>
+            <div>{editMode ? <FormikProfileDataForm editProfileInfo={props.editProfileInfo}
+                                                    profile={props.profile}
+                                                    setEditMode={setEditMode} />
                 : <ProfileData profile={props.profile}
                                isOwner={props.isOwner}
                                goToEditMode={() => {
@@ -50,6 +52,7 @@ const ProfileData = (props) => {
             <div><b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
                 return <Contacts contactTitle={key}
                                  contactValue={props.profile.contacts[key]}
+                                 key={key}
                 />
             })}</div>
             <div>{!props.isOwner &&

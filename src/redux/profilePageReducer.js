@@ -124,11 +124,11 @@ export const savePhoto = (file) => async (dispatch) => {
     }
 }
 
-export const editProfileInfo = (values) => async (dispatch) => {
+export const editProfileInfo = (values) => async (dispatch, getState) => {
+    let userId = getState().login.id
     let response = await APIeditProfileInfo (values)
-    console.log(response)
-    debugger;
     if (response.data.resultCode === 0) {
+        dispatch(getUserProfileThunkCreator(userId))
     }
 }
 
