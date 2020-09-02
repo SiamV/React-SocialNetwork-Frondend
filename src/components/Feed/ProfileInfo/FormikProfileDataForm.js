@@ -40,18 +40,18 @@ const FormikProfileDataForm = (props) => {
                 value={formik.values.lookingForAJobDescription}
             /></div>
 
-            {/*<div><b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {*/}
-            {/*    return <div key={key}> {key}: <input*/}
-            {/*        id={key}*/}
-            {/*        name="contacts+{key}"*/}
-            {/*        type="text"*/}
-            {/*        placeholder={key}*/}
-            {/*        onChange={formik.handleChange}*/}
-            {/*        value={formik.values.contacts}*/}
-            {/*    />*/}
-            {/*    </div>*/}
-            {/*})}*/}
-            {/*</div>*/}
+            <div><b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
+                return <div key={key}> {key}: <input
+                    id={key}
+                    name={"contacts." + key}
+                    type="text"
+                    placeholder={key}
+                    onChange={formik.handleChange}
+                    value={formik.values.contacts[key]}
+                />
+                </div>
+            })}
+            </div>
         </form>
     );
 }
