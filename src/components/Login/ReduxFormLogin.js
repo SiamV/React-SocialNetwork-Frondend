@@ -15,6 +15,9 @@ const FormLogin = (props) => {
                         validate={[requiredField, maxLength20]} type={'password'} /></div>
             <div><Field name={'rememberMe'} component={Input} type={'checkbox'} /> remember me</div>
             {props.error && <div className={classes.errors}>{props.error}</div>}
+            {props.captchaUrl && <img src={props.captchaUrl} alt={'captcha'} />}
+            {props.captchaUrl && <Field name={'captcha'} component={Input} placeholder={'symbols from captcha'}
+                                        validate={[requiredField]} />}
             <div>
                 <button>Login</button>
             </div>

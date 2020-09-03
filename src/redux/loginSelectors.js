@@ -7,6 +7,10 @@ export  const getLogin = (state) => {
 export  const getEmail= (state) => {
     return state.login.email
 }
-export  const getIsLogin = (state) => {
+export  const getIsLoginSelector = (state) => {
     return state.login.isLogin
+}
+
+export  const getCaptchaUrlSelector = (state) => {
+    return state.login.captchaUrl
 }

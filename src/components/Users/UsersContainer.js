@@ -18,7 +18,7 @@ import {
     getTotalCountUsers,
     getUsers
 } from "../../redux/usersSelectors";
-import {getIsLogin} from "../../redux/loginSelectors";
+import {getIsLoginSelector} from "../../redux/loginSelectors";
 
 class UsersAJAX extends React.Component {
     // constructor(props) {
@@ -62,7 +62,7 @@ let mapStateToProps = (state) => {
         currentPage: getCurrentPage(state),
         isLoading: getIsLoading(state),
         isButtonDisabling: getIsButtonDisabling(state),
-        isLogin: getIsLogin(state)
+        isLogin: getIsLoginSelector(state)
     }
 }
 

@@ -89,14 +89,19 @@ export const APIeditProfileInfo = (values) => {
 }
 
 export const loginAPI = {
-    loginPostAPI(email, password, rememberMe) {
+    loginPostAPI(email, password, rememberMe, captcha) {
         return (
-            instance.post(`auth/login`, {email, password, rememberMe})
+            instance.post(`auth/login`, {email, password, rememberMe, captcha})
         )
     },
     logoutDeleteAPI() {
         return (
             instance.delete(`auth/login`)
+        )
+    },
+    getCaptchaUrl() {
+        return (
+            instance.get(`security/get-captcha-url`)
         )
     }
 }
