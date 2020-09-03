@@ -14,6 +14,7 @@ import {connect, Provider} from "react-redux";
 import {ThunkCreatorInitialized} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import store from "./redux/store-redux";
+import MainPage from "./components/MainPage/MainPage";
 
 // import FriendContainer from "./components/Friends/FriendContainer";
 // import NewsGroupsContainer from "./components/NewsGroups/NewsGroupsContainer";
@@ -50,6 +51,8 @@ class App extends React.Component {
                     <Route path={'/profile/:userId'} render={() => <ProfileContainer />} />
                     <Route path={'/login'} render={() => <Login />} />
                     <Route path={'/users'} render={() => <UsersContainer />} />
+                    <Route exact path={'/'} render={() => <MainPage />} />
+                    {/*<Route path={'*'} render={() => <div>404 PAGE NOT FOUND</div>} />*/}
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>
             </div>
