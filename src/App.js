@@ -52,6 +52,7 @@ class App extends React.Component {
                     <Route path={'/login'} render={() => <Login />} />
                     <Route path={'/users'} render={() => <UsersContainer />} />
                     <Route exact path={'/'} render={() => <MainPage />} />
+                    
                     {/*<Route path={'*'} render={() => <div>404 PAGE NOT FOUND</div>} />*/}
                 </div>
                 <div className={'site-wrapper-sidebar'}><Sidebar /></div>
